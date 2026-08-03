@@ -1,4 +1,4 @@
-name: Automatización 24/7 Indicadores Económicos Bolivia
+name: Actualización Diaria 24/7 Indicadores Bolivia
 
 on:
   schedule:
@@ -9,24 +9,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-indicadores:
+  actualizar:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout del código del proyecto
+      - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar entorno Python 3.11
+      - name: Configurar Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Instalar dependencias requeridas desde requirements.txt
+      - name: Instalar librerías
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar verificación y actualización de indicadores en Blogger
+      - name: Ejecutar actualización en Blogger y WhatsApp
         env:
           BLOGGER_TOKEN_JSON: ${{ secrets.BLOGGER_TOKEN_JSON }}
           ONESIGNAL_REST_KEY: ${{ secrets.ONESIGNAL_REST_KEY }}
