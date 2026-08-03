@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indicadores Económicos de Bolivia | Daniel Simons</title>
+
+  <!-- Open Graph & Social Preview Meta Tags -->
+  <meta property="og:title" content="Indicadores Económicos de Bolivia | Daniel Simons" />
+  <meta property="og:description" content="Monitoreo ejecutivo de datos macroeconómicos clave de Bolivia: Dólar Libre, Dólar Oficial, Inflación, Reservas RIN, Balanza Comercial y Riesgo País." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.danielsimons.xyz/p/indicadores-economicos-de-bolivia_0349188327.html" />
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix_default_preview.jpg" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Indicadores Económicos de Bolivia | Daniel Simons" />
+  <meta name="twitter:description" content="Monitoreo ejecutivo de datos macroeconómicos clave de Bolivia: Dólar Libre, Dólar Oficial, Inflación, Reservas RIN, Balanza Comercial y Riesgo País." />
+  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix_default_preview.jpg" />
+
+  <style>
+    :root {
+      --bg-color: #000000;
+      --card-bg: #0d0d0d;
+      --card-border: rgba(188, 167, 114, 0.25);
+      --gold-accent: #BCA772;
+      --gold-hover: #d4a017;
+      --text-main: #FFFFFF;
+      --text-muted: #B7BEC9;
+      --text-subtle: #8892B0;
+      
+      --sem-verde-bg: rgba(40, 167, 69, 0.1);
+      --sem-verde-border: rgba(40, 167, 69, 0.4);
+      --sem-verde-text: #2ecc71;
+
+      --sem-amarillo-bg: rgba(255, 193, 7, 0.1);
+      --sem-amarillo-border: rgba(255, 193, 7, 0.4);
+      --sem-amarillo-text: #f1c40f;
+
+      --sem-rojo-bg: rgba(220, 53, 69, 0.12);
+      --sem-rojo-border: rgba(220, 53, 69, 0.5);
+      --sem-rojo-text: #e74c3c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      padding: 20px 10px;
+    }
+
+    .econ-dashboard {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Encabezado Principal */
+    .dashboard-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .dashboard-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-accent);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .dashboard-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 14px auto;
+    }
+
+    /* Botón Directo a Canal de WhatsApp */
+    .wa-channel-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid #25D366;
+      color: #25D366;
+      padding: 9px 18px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .wa-channel-btn:hover {
+      background: #25D366;
+      color: #000000;
+      box-shadow: 0 0 14px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Leyenda General del Semáforo */
+    .legend-bar {
+      background: rgba(13, 13, 13, 0.9);
+      border: 1px solid rgba(188, 167, 114, 0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .legend-items {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-verde { background: #2ecc71; box-shadow: 0 0 6px #2ecc71; }
+    .dot-amarillo { background: #f1c40f; box-shadow: 0 0 6px #f1c40f; }
+    .dot-rojo { background: #e74c3c; box-shadow: 0 0 6px #e74c3c; }
+
+    .legend-help-btn {
+      background: transparent;
+      border: none;
+      color: var(--gold-accent);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: color 0.2s ease;
+    }
+
+    .legend-help-btn:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* Banner Metodológico Desplegable */
+    .methodology-banner {
+      display: none;
+      background: #080808;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .methodology-banner-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(188, 167, 114, 0.2);
+      padding-bottom: 6px;
+    }
+
+    .methodology-banner p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    /* Grid de Tarjetas Principales */
+    .indicator-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Tarjeta Individual Estilo Ejecutivo Centrado */
+    .indicator-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+      transition: border-color 0.2s ease;
+    }
+
+    .indicator-card:hover {
+      border-color: rgba(188, 167, 114, 0.45);
+    }
+
+    /* Header de la Tarjeta */
+    .indicator-main {
+      padding: 24px 24px 14px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .card-top-row {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 12px;
+    }
+
+    .indicator-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .toggle-icon {
+      font-size: 11px;
+      color: var(--gold-accent);
+      transition: transform 0.2s ease;
+    }
+
+    .indicator-card.open .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .indicator-date-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .indicator-date-line strong {
+      color: var(--gold-accent);
+      font-weight: 700;
+    }
+
+    /* Gran Valor Centrado */
+    .indicator-hero-value {
+      font-size: 46px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -1px;
+      margin: 8px 0 4px 0;
+      line-height: 1.1;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .indicator-unit-line {
+      font-size: 13px;
+      color: var(--text-subtle);
+      margin-bottom: 6px;
+    }
+
+    .indicator-source-line {
+      font-size: 13px;
+      color: var(--text-subtle);
+      margin-bottom: 6px;
+    }
+
+    .indicator-source-line strong {
+      color: var(--gold-accent);
+      font-weight: 700;
+    }
+
+    /* Línea de Fecha Cronológica del Día */
+    .indicator-today-line {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding: 3px 10px;
+      background: rgba(188, 167, 114, 0.06);
+      border-radius: 4px;
+      border: 1px solid rgba(188, 167, 114, 0.15);
+      display: inline-block;
+    }
+
+    .indicator-today-line strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* BARRA INFERIOR DE ACCIONES - COMPLETA Y FIJA (LOS 3 BOTONES QUEDAN 100% INMÓVILES) */
+    .indicator-actions-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+
+    /* Insignia de Estado RAG */
+    .sem-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 7px 16px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .sem-badge:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .sem-verde {
+      background: var(--sem-verde-bg);
+      border: 1px solid var(--sem-verde-border);
+      color: var(--sem-verde-text);
+    }
+    .sem-verde .badge-dot { background: var(--sem-verde-text); }
+
+    .sem-amarillo {
+      background: var(--sem-amarillo-bg);
+      border: 1px solid var(--sem-amarillo-border);
+      color: var(--sem-amarillo-text);
+    }
+    .sem-amarillo .badge-dot { background: var(--sem-amarillo-text); }
+
+    .sem-rojo {
+      background: var(--sem-rojo-bg);
+      border: 1px solid var(--sem-rojo-border);
+      color: var(--sem-rojo-text);
+    }
+    .sem-rojo .badge-dot { background: var(--sem-rojo-text); }
+
+    /* ESTADO ACTIVO DESTACADO PARA SEMÁFORO Y BOTONES */
+    .sem-badge.active-btn {
+      box-shadow: 0 0 12px rgba(188, 167, 114, 0.6);
+      border-width: 2px;
+      outline: 2px solid var(--gold-accent);
+    }
+
+    /* Botones de Acción Integrados */
+    .action-btn {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 7px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .action-btn:hover {
+      background: rgba(188, 167, 114, 0.2);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+    }
+
+    .action-btn.active-btn {
+      background: rgba(188, 167, 114, 0.25);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+      box-shadow: 0 0 10px rgba(188, 167, 114, 0.4);
+      outline: 2px solid var(--gold-accent);
+    }
+
+    /* Panel Acordeón Único que se abre DEBAJO de la botonera fija */
+    .indicator-details {
+      display: none;
+      padding: 16px 20px 20px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: #060606;
+    }
+
+    .card-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: rgba(188, 167, 114, 0.2);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Contenidos de Pestañas */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .detail-item {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .detail-label {
+      font-size: 11px;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .detail-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    .history-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-accent);
+      margin-bottom: 8px;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .history-table th, .history-table td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .history-table th {
+      color: var(--text-subtle);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .history-table td {
+      color: var(--text-muted);
+    }
+
+    .tab-section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .tab-paragraph {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .eval-reason-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid var(--gold-accent);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .criteria-box {
+      background: rgba(13, 13, 13, 0.8);
+      border: 1px solid rgba(188, 167, 114, 0.2);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 12px;
+    }
+
+    .criteria-title {
+      font-weight: 700;
+      color: var(--gold-accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .criteria-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .criteria-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .methodology-box {
+      font-size: 12px;
+      color: var(--text-subtle);
+      background: rgba(188, 167, 114, 0.04);
+      border-left: 2px solid var(--gold-accent);
+      padding: 10px 14px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* ESTILO DISCRETO PARA PREGUNTAS UBICADAS ENTRE CADA CUADRO */
+    .between-cards-question {
+      padding: 10px 16px;
+      margin: 4px 0 10px 0;
+      text-align: center;
+      background: rgba(188, 167, 114, 0.03);
+      border-left: 2px solid rgba(188, 167, 114, 0.3);
+      border-radius: 0 8px 8px 0;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .between-cards-question strong {
+      color: var(--gold-accent);
+      font-weight: 700;
+    }
+
+    .between-cards-question a {
+      color: var(--gold-accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 6px;
+      transition: color 0.2s ease;
+    }
+
+    .between-cards-question a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* Footer del Dashboard */
+    .dashboard-footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Imagen Oculta para Scraper de Redes Sociales (WhatsApp, Facebook, LinkedIn, Twitter) -->
+<div style="display:none !important; visibility:hidden; opacity:0; height:0; width:0; overflow:hidden;">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix_default_preview.jpg" alt="Indicadores Económicos de Bolivia - Daniel Simons" />
+</div>
+
+<div class="econ-dashboard">
+
+  <!-- Encabezado -->
+  <header class="dashboard-header">
+    <h1 class="dashboard-title">🇧🇴 Indicadores Económicos de Bolivia</h1>
+    <p class="dashboard-subtitle">
+      Monitoreo ejecutivo de datos clave. Evaluación macroeconómica transparente bajo estándares técnicos.
+    </p>
+    <a href="https://whatsapp.com/channel/0029VbDAeCQ1t90gu0qjtC07" target="_blank" class="wa-channel-btn">
+      📲 ACTUALIZACIONES DIARIAS: UNIRSE AL CANAL DE WHATSAPP &#10140;
+    </a>
+  </header>
+
+  <!-- Leyenda General del Semáforo -->
+  <div class="legend-bar">
+    <div class="legend-items">
+      <div class="legend-item">
+        <span class="legend-dot dot-verde"></span>
+        <span><strong>Verde:</strong> Estable</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot dot-amarillo"></span>
+        <span><strong>Amarillo:</strong> Precaución</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot dot-rojo"></span>
+        <span><strong>Rojo:</strong> Crítico</span>
+      </div>
+    </div>
+    <button class="legend-help-btn" onclick="toggleMethodologyBanner()">
+      ¿Cómo se evalúa el semáforo? &#10140;
+    </button>
+  </div>
+
+  <!-- Banner Metodológico Desplegable -->
+  <div class="methodology-banner" id="methodologyBanner">
+    <div class="methodology-banner-title">📐 Metodología y Criterios del Semáforo Macroeconómico</div>
+    <p>
+      El semáforo asigna un estado visual a cada indicador comparando la cifra oficial reportada frente a parámetros de estabilidad macroeconómica recomendados por el FMI, Banco Mundial y normativas del Banco Central de Bolivia.
+    </p>
+    <p>
+      • <strong>Verde (Estable / Saludable):</strong> La variable opera dentro de rangos sostenibles de equilibrio sin generar presiones de costos ni devaluación.
+    </p>
+    <p>
+      • <strong>Amarillo (Precaución / Zona de Alerta):</strong> Variables que atraviesan presiones moderadas o fases de ajuste en desarrollo que requieren seguimiento constante.
+    </p>
+    <p>
+      • <strong>Rojo (Crítico / Alto Riesgo):</strong> Advierte desviaciones significativas respecto a umbrales de estabilidad, expresando una distorsión estructural que exige ajustes preventivos.
+    </p>
+  </div>
+
+  <!-- Contenedor Dinámico de Indicadores -->
+  <div class="indicator-grid" id="indicatorContainer">
+    <div style="text-align:center; padding: 40px; color: var(--gold-accent);">
+      Cargando indicadores...
+    </div>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="dashboard-footer">
+    <p style="margin-bottom:10px;">
+      <a href="https://whatsapp.com/channel/0029VbDAeCQ1t90gu0qjtC07" target="_blank" class="wa-channel-btn">
+        📲 ACTUALIZACIONES DIARIAS: UNIRSE AL CANAL DE WHATSAPP &#10140;
+      </a>
+    </p>
+    Compilado de Transparencia Económica • www.danielsimons.xyz
+  </footer>
+
+</div>
+
+<script>
+  function getFechaDiaActual() {
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const hoy = new Date();
+    let fechaStr = hoy.toLocaleDateString('es-ES', opciones);
+    return fechaStr.charAt(0).toUpperCase() + fechaStr.slice(1);
+  }
+
+  const fechaHoyFormateada = getFechaDiaActual();
+
+  const datosIndicadores = [
+    {
+      "id": "tc_paralelo",
+      "nombre": "Dólar Paralelo / Mercado Libre",
+      "valor": "11.75 Bs",
+      "unidad": "Bs / USD (Promedio)",
+      "semaforo": "verde",
+      "semaforo_label": "ESTABILIZADO",
+      "fuente": "Consolidado Mercado P2P (Binance, AirTM, Casas de Cambio)",
+      "periodo": "02 de Agosto de 2026",
+      "fecha_actualizacion": "02/08/2026",
+      "que_es": "El dólar en mercado libre refleja la cotización real de la divisa estadounidense en operaciones no reguladas y plataformas P2P. A diferencia del tipo fijado por decreto, este valor se determina por la oferta y demanda directa de agentes económicos. Es el termómetro más fiel del costo real de reposición de insumos importados.",
+      "evaluacion_corta": "Se evalúa en Verde porque la cotización de 11,75 Bs muestra convergencia y alineación con el tipo de cambio oficial flexible, estabilizando el costo de reposición no regulado.",
+      "analisis": "La convergencia observada responde al mayor flujo de dólares provenientes del superávit comercial y a la flexibilidad cambiaria oficial. La reducción de la brecha respecto al dólar bancario disminuye la distorsión de precios en el comercio mayorista.\n\nPara empresas e importadores, esta estabilidad relativa reduce el riesgo de cotizaciones especulativas de corto plazo y facilita la planificación de inventarios.",
+      "pregunta_entre_cuadros": "¿Con la convergencia del dólar libre a 11.75 Bs, tu empresa ya recalculó el precio real de reposición de inventarios?",
+      "detalles_historicos": [
+        {"periodo": "02/08/2026", "valor": "11.75 Bs", "fuente": "Mercado P2P (Rango 11.65-11.80)"},
+        {"periodo": "31/07/2026", "valor": "11.90 Bs", "fuente": "Mercado P2P"},
+        {"periodo": "Julio 2026", "valor": "12.10 Bs", "fuente": "Mercado P2P"},
+        {"periodo": "Pico 2025", "valor": "13.50+ Bs", "fuente": "Mercado Informal"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Brecha respecto al oficial < 5% o convalidado en mercado libre",
+        "amarillo": "Brecha entre 5% y 15% (Presión moderada)",
+        "rojo": "Brecha > 15% (Distorsión cambiaria severa)"
+      },
+      "nota": "Promedio ponderado de transacciones P2P. Muestra alineación y convergencia con el tipo de cambio oficial flexible."
+    },
+    {
+      "id": "tc_oficial",
+      "nombre": "Dólar Oficial (BCB)",
+      "valor": "12.13 Bs",
+      "unidad": "Bs / USD",
+      "semaforo": "rojo",
+      "semaforo_label": "CRÍTICO / AJUSTE",
+      "fuente": "Banco Central de Bolivia (BCB)",
+      "periodo": "02 de Agosto de 2026",
+      "fecha_actualizacion": "02/08/2026",
+      "que_es": "Es la cotización fijada diariamente por el Banco Central de Bolivia para operaciones bancarias y comercio exterior formal. Representa la tasa institucional a la que el sistema financiero liquida obligaciones con el exterior y calcula la conversión de pasivos en moneda extranjera.",
+      "evaluacion_corta": "Se evalúa en Rojo debido a que la cotización oficial se ajustó de 6,96 Bs a 12,13 Bs bajo el régimen flexible, representando una variación porcentual superior al 10% anual respecto al ancla previa.",
+      "analisis": "La transición del régimen fijo a un esquema flexible busca sincerar la paridad monetaria con la realidad del mercado. Este ajuste ha permitido reordenar la liquidación de divisas en la banca comercial, reduciendo el descalce entre la cotización bancaria y el mercado libre.\n\nEl desafío central radica en anclar las expectativas de costos para evitar un traslado excesivo a precios finales y garantizar la certidumbre de contratos a mediano plazo.",
+      "pregunta_entre_cuadros": "Frente al ajuste del régimen flexible a 12.13 Bs, ¿tus contratos y pasivos bancarios cuentan con protección cambiaria?",
+      "detalles_historicos": [
+        {"periodo": "02/08/2026", "valor": "12.13 Bs", "fuente": "BCB (Dólar Flexible)"},
+        {"periodo": "31/07/2026", "valor": "12.15 Bs", "fuente": "BCB"},
+        {"periodo": "Junio 2026", "valor": "11.80 Bs", "fuente": "BCB"},
+        {"periodo": "Régimen Fijo 2025", "valor": "6.96 Bs", "fuente": "BCB (Régimen anterior)"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Variación anual < 3% (Estabilidad cambiaria)",
+        "amarillo": "Variación anual entre 3% y 10% (Ajuste moderado)",
+        "rojo": "Variación anual > 10% (Devaluación / Ajuste cambiario estructural)"
+      },
+      "nota": "Cotización oficial diaria bajo el régimen de tipo de cambio flexible del BCB. El ajuste acumulado superó el 10% anual respecto al ancla previa."
+    },
+    {
+      "id": "inflacion",
+      "nombre": "Inflación (IPC)",
+      "valor": "4.82%",
+      "unidad": "Acumulada 1er Semestre (Interanual: 9.23%)",
+      "semaforo": "rojo",
+      "semaforo_label": "CRÍTICO / ALTA PRESIÓN",
+      "fuente": "Instituto Nacional de Estadística (INE)",
+      "periodo": "A Junio 2026 (1er Semestre)",
+      "fecha_actualizacion": "05/07/2026",
+      "que_es": "El Índice de Precios al Consumidor (IPC) mide la variación porcentual periódica del costo de una canasta representativa de bienes y servicios. Es el indicador directo del nivel de erosión sobre el poder adquisitivo de la moneda nacional.",
+      "evaluacion_corta": "Se clasifica en Rojo porque la inflación acumulada del 4,82% en el primer semestre sitúa la variación interanual a doce meses en 9,23%, superando el margen de tolerancia macroeconómica.",
+      "analisis": "El ritmo interanual del 9,23% refleja el encarecimiento de bienes importados e insumos agrícolas debido al periodo de ajuste cambiario.\n\nPara las unidades productivas, este escenario exige optimizar la estructura de costos fijos y recalcular márgenes operacionales para proteger la sostenibilidad del flujo de caja.",
+      "pregunta_entre_cuadros": "Con la inflación acumulada del 4.82%, ¿cuántos puntos de margen operativo ha absorbido el costo de insumos?",
+      "detalles_historicos": [
+        {"periodo": "Acumulada 1S 2026", "valor": "4.82%", "fuente": "INE"},
+        {"periodo": "Junio 2026 (Mensual)", "valor": "2.15%", "fuente": "INE"},
+        {"periodo": "Interanual a Junio 2026", "valor": "9.23%", "fuente": "INE"},
+        {"periodo": "Gestión 2025 Total", "valor": "7.40%", "fuente": "INE"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "IPC anual < 4.0% (Estabilidad de precios / Meta BCB)",
+        "amarillo": "IPC anual entre 4.0% y 7.0% (Presión inflacionaria moderada)",
+        "rojo": "IPC interanual > 7.0% (Riesgo de erosión del poder adquisitivo)"
+      },
+      "nota": "Índice de Precios al Consumidor (INE). La inflación interanual de 9.23% ubica al indicador en nivel de alerta roja."
+    },
+    {
+      "id": "reservas",
+      "nombre": "Reservas Internacionales (RIN)",
+      "valor": "$3.617,3 MM",
+      "unidad": "Millones de USD",
+      "semaforo": "amarillo",
+      "semaforo_label": "PRECAUCIÓN / MONITOREO",
+      "fuente": "Banco Central de Bolivia (BCB)",
+      "periodo": "Al 30 de Junio de 2026",
+      "fecha_actualizacion": "15/07/2026",
+      "que_es": "Las RIN representan los activos financieros en divisas y oro custodiados por el Banco Central para respaldar la moneda nacional y garantizar el pago de deuda externa e importaciones esenciales.",
+      "evaluacion_corta": "Se evalúa en Amarillo porque el saldo total de 3.617,3 MM USD está respaldado por reservas de oro físico ($2.882,9M), aunque la liquidez de divisas operativas ($666,1M) permanece bajo seguimiento constante.",
+      "analisis": "El saldo se sostiene prioritariamente en el valor de las reservas de oro físico, mientras que la liquidez en divisas operativas permanece bajo monitoreo estrecho.\n\nEl fortalecimiento continuo del superávit comercial será el canal principal para reconstituir el componente líquido de las reservas durante el segundo semestre.",
+      "pregunta_entre_cuadros": "¿Considerando la liquidez actual de divisas, tienes garantizado el flujo de pagos al exterior a 90 días?",
+      "detalles_historicos": [
+        {"periodo": "Junio 2026", "valor": "$3.617,3 MM", "fuente": "BCB (Oro: $2.882.9M | Divisas: $666.1M)"},
+        {"periodo": "Diciembre 2025", "valor": "$3.713,2 MM", "fuente": "BCB"},
+        {"periodo": "Diciembre 2024", "valor": "$1.708,0 MM", "fuente": "BCB"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Divisas de libre disponibilidad cubren > 3 meses de importaciones",
+        "amarillo": "RIN sostenidas por oro físico ($2.882M), pero divisas en zona de amortiguación ($666M)",
+        "rojo": "Divisas líquidas en mínimos críticos (< 1 mes de importaciones)"
+      },
+      "nota": "Total de RIN reportado por el BCB ($2.882,9M en 22.3 toneladas de oro y $666,1M en divisas y DEG)."
+    },
+    {
+      "id": "balanza",
+      "nombre": "Balanza Comercial",
+      "valor": "+$1.669 MM",
+      "unidad": "Millones de USD (1S 2026)",
+      "semaforo": "verde",
+      "semaforo_label": "SUPERÁVIT COMERCIAL",
+      "fuente": "Instituto Nacional de Estadística (INE)",
+      "periodo": "1er Semestre 2026 (Enero - Junio)",
+      "fecha_actualizacion": "28/07/2026",
+      "que_es": "Es la diferencia contable entre el valor monetario total de las exportaciones e importaciones de un país. Un saldo positivo indica que la economía genera más divisas por ventas al exterior de las que gasta en compras externas.",
+      "evaluacion_corta": "Se evalúa en Verde al acumular un superávit de 1.669 MM USD en el primer semestre de 2026, aportando un saldo neto positivo en el flujo de divisas del país.",
+      "analisis": "El superávit acumulado de 1.669 MM USD al primer semestre constituye el pilar de estabilización del mercado monetario.\n\nLa recuperación de exportaciones agroindustriales e industriales compensó la caída en hidrocarburos, generando una oferta neta de dólares que alivia la liquidez del sistema.",
+      "pregunta_entre_cuadros": "El superávit comercial genera liquidez en exportación no tradicional. ¿Está tu modelo preparado para facturar en divisas?",
+      "detalles_historicos": [
+        {"periodo": "1S 2026 Acumulado", "valor": "+$1.669,0 MM", "fuente": "INE (Exp: $6.407,5M | Imp: $4.738,5M)"},
+        {"periodo": "Junio 2026 (Mensual)", "valor": "+$184,7 MM", "fuente": "INE"},
+        {"periodo": "Gestión 2025 Total", "valor": "-$120,0 MM", "fuente": "INE"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Superávit comercial positivo (Exportaciones mayores a Importaciones)",
+        "amarillo": "Déficit comercial moderado (< 2% del PIB)",
+        "rojo": "Déficit comercial profundo y sostenido (> 2% del PIB)"
+      },
+      "nota": "Saldo entre exportaciones totales e importaciones registrado por el INE. El superávit de $1.669M genera flujo neto positivo de divisas."
+    },
+    {
+      "id": "embi",
+      "nombre": "Riesgo País (EMBI Bolivia)",
+      "valor": "430 pbs",
+      "unidad": "Puntos Básicos (JP Morgan)",
+      "semaforo": "amarillo",
+      "semaforo_label": "RIESGO MODERADO",
+      "fuente": "JP Morgan / Reporte Financiero Internacional",
+      "periodo": "Agosto 2026",
+      "fecha_actualizacion": "01/08/2026",
+      "que_es": "El índice EMBI elaborado por JP Morgan mide la sobretasa o diferencial de rendimiento que deben pagar los bonos soberanos de Bolivia frente a los títulos del Tesoro de Estados Unidos. Expresa la percepción internacional sobre la solvencia del Estado.",
+      "evaluacion_corta": "Se clasifica en Amarillo con 430 puntos básicos tras una contracción importante desde los 605 pbs de mayo, reflejando una moderación del riesgo en los mercados internacionales.",
+      "analisis": "La contracción del riesgo país a 430 puntos básicos en agosto refleja una recepción favorable por parte de los mercados internacionales ante el sinceramiento del esquema cambiario.\n\nUn EMBI a la baja reduce progresivamente el costo de financiamiento externo para la banca y grandes empresas.",
+      "pregunta_entre_cuadros": "Con la moderación del riesgo país a 430 pbs, ¿has evaluado renegociar tasas y plazos en tus líneas crediticias?",
+      "detalles_historicos": [
+        {"periodo": "Agosto 2026", "valor": "430 pbs", "fuente": "JP Morgan"},
+        {"periodo": "Mayo 2026 (Pico)", "valor": "605 pbs", "fuente": "JP Morgan"},
+        {"periodo": "Enero 2026", "valor": "350 pbs", "fuente": "JP Morgan"},
+        {"periodo": "Gestión 2025", "valor": "1.500+ pbs", "fuente": "JP Morgan"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "EMBI < 400 pbs (Riesgo bajo / Acceso favorable a crédito internacional)",
+        "amarillo": "EMBI entre 400 pbs y 800 pbs (Riesgo moderado / Costo crediticio intermedio)",
+        "rojo": "EMBI > 800 pbs (Riesgo elevado / Cierre de mercados voluntarios de deuda)"
+      },
+      "nota": "Diferencial de rendimiento de la deuda soberana de Bolivia frente a los bonos del Tesoro estadounidense."
+    },
+    {
+      "id": "oro_intl",
+      "nombre": "Cotización del Oro (Exportación)",
+      "valor": "$2.450 USD",
+      "unidad": "USD / Onza Troy",
+      "semaforo": "verde",
+      "semaforo_label": "PRECIO HISTÓRICO ALTO",
+      "fuente": "LBMA (London Bullion Market Association)",
+      "periodo": "Agosto 2026",
+      "fecha_actualizacion": "01/08/2026",
+      "que_es": "Es el precio internacional de la onza troy de oro en mercados globales (LBMA). Determina directamente el valor de las reservas físicas del BCB y los ingresos por regalías mineras de las regiones exportadoras.",
+      "evaluacion_corta": "Se evalúa en Verde debido a cotizaciones históricas superiores a $2.450 USD/oz, favoreciendo directamente la valoración de las RIN y los ingresos mineros del país.",
+      "analisis": "Los niveles históricos superiores a $2.450 USD/oz actúan como un amortiguador de valor para el balance del Banco Central.\n\nEl alto precio internacional valoriza de forma automática el activo de reserva nacional y maximiza los ingresos por exportaciones mineras.",
+      "pregunta_entre_cuadros": "Los precios altos del oro dinamizan sectores vinculados. ¿Cómo aprovecha tu negocio el incremento de demanda regional?",
+      "detalles_historicos": [
+        {"periodo": "Agosto 2026", "valor": "$2.450 USD/oz", "fuente": "LBMA"},
+        {"periodo": "Junio 2026", "valor": "$2.380 USD/oz", "fuente": "LBMA"},
+        {"periodo": "Gestión 2025", "valor": "$2.050 USD/oz", "fuente": "LBMA"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Precio > $2.200/oz (Impacto muy favorable en reservas y regalías mineras)",
+        "amarillo": "Precio entre $1.800 y $2.200/oz (Rango neutro)",
+        "rojo": "Precio < $1.800/oz (Menor valor de activos de reserva y regalías)"
+      },
+      "nota": "Precio spot internacional del oro. Los niveles altos favorecen directamente la valoración de las RIN y las exportaciones mineras de Bolivia."
+    },
+    {
+      "id": "pib",
+      "nombre": "Crecimiento del PIB",
+      "valor": "2.10%",
+      "unidad": "Variación Porcentual Anual",
+      "semaforo": "amarillo",
+      "semaforo_label": "CRECIMIENTO MODERADO",
+      "fuente": "Instituto Nacional de Estadística (INE)",
+      "periodo": "Gestión 2025 / 2026",
+      "fecha_actualizacion": "25/06/2026",
+      "que_es": "El Producto Interno Bruto evalúa la suma total del valor monetario de la producción de bienes y servicios finales generados dentro del país durante un periodo determinado.",
+      "evaluacion_corta": "Se califica en Amarillo con un crecimiento del 2,10%, lo que evidencia una expansión moderada durante la fase de ajuste macroeconómico.",
+      "analisis": "La tasa de expansión del 2,10% evidencia una fase de crecimiento moderado en medio de la reestructuración macroeconómica.\n\nLa dinámica económica depende de la capacidad del sector privado para absorber los nuevos costos de producción y dinamizar sectores estratégicos como la manufactura y los servicios.",
+      "pregunta_entre_cuadros": "En un escenario de crecimiento al 2.10%, ¿tu plan operativo prioriza ganar cuota de mercado o blindar eficiencia?",
+      "detalles_historicos": [
+        {"periodo": "Proyección 2026", "valor": "2.10%", "fuente": "INE / Banco Mundial"},
+        {"periodo": "Gestión 2025", "valor": "2.30%", "fuente": "INE"},
+        {"periodo": "Gestión 2024", "valor": "3.10%", "fuente": "INE"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Crecimiento PIB > 3.5% anual (Desarrollo robusto para economías emergentes)",
+        "amarillo": "Crecimiento PIB entre 1.5% y 3.5% anual (Crecimiento moderado / lento)",
+        "rojo": "Crecimiento PIB < 1.5% anual o variación negativa (Estancamiento / Recesión)"
+      },
+      "nota": "Variación interanual del Producto Interno Bruto a precios constantes reportado por el INE."
+    }
+  ];
+
+  function renderDashboard() {
+    const container = document.getElementById("indicatorContainer");
+    container.innerHTML = "";
+
+    datosIndicadores.forEach((item, index) => {
+      const semClass = `sem-${item.semaforo}`;
+
+      const historyRows = item.detalles_historicos.map(h => `
+        <tr>
+          <td>${h.periodo}</td>
+          <td><strong>${h.valor}</strong></td>
+          <td>${h.fuente}</td>
+        </tr>
+      `).join('');
+
+      const analisisParagraphs = item.analisis.split('\n\n').map(p => `
+        <p class="tab-paragraph">${p}</p>
+      `).join('');
+
+      const cardHTML = `
+        <div class="indicator-card" id="card-${item.id}">
+          <!-- Header del cuadro estilo Ejecutivo Centrado -->
+          <div class="indicator-main" onclick="toggleCardTab('${item.id}', 'datos')">
+            <div class="card-top-row">
+              <div class="indicator-name">
+                ${item.nombre} <span class="toggle-icon">▼</span>
+              </div>
+              <div class="indicator-date-line">• Período: <strong>${item.periodo}</strong></div>
+            </div>
+
+            <div class="indicator-hero-value">${item.valor}</div>
+            <div class="indicator-unit-line">${item.unidad}</div>
+            <div class="indicator-source-line">Fuente: <strong>${item.fuente}</strong></div>
+            <div class="indicator-today-line">Actualizado al día: <strong>${fechaHoyFormateada}</strong></div>
+          </div>
+
+          <!-- BOTONERA INFERIOR COMPLETA Y FIJA (LOS 3 BOTONES QUEDAN 100% INMÓVILES) -->
+          <div class="indicator-actions-bar">
+            <span class="sem-badge ${semClass}" id="btn-${item.id}-semaforo" onclick="event.stopPropagation(); toggleCardTab('${item.id}', 'semaforo');">
+              <span class="badge-dot"></span> ${item.semaforo_label}
+            </span>
+            <button class="action-btn" id="btn-${item.id}-quees" onclick="event.stopPropagation(); toggleCardTab('${item.id}', 'quees');">
+              ¿Qué es? &#10140;
+            </button>
+            <button class="action-btn" id="btn-${item.id}-analisis" onclick="event.stopPropagation(); toggleCardTab('${item.id}', 'analisis');">
+              Análisis &#10140;
+            </button>
+          </div>
+
+          <!-- Panel Acordeón Integrado Único (se despliega DEBAJO de la botonera fija) -->
+          <div class="indicator-details" id="details-${item.id}">
+            
+            <div class="card-tabs">
+              <button class="tab-btn active" id="tab-btn-${item.id}-datos" onclick="switchTab('${item.id}', 'datos')">
+                📊 Datos e Histórico
+              </button>
+              <button class="tab-btn" id="tab-btn-${item.id}-semaforo" onclick="switchTab('${item.id}', 'semaforo')">
+                📐 Parámetros Semáforo
+              </button>
+              <button class="tab-btn" id="tab-btn-${item.id}-quees" onclick="switchTab('${item.id}', 'quees')">
+                📖 ¿Qué es este indicador?
+              </button>
+              <button class="tab-btn" id="tab-btn-${item.id}-analisis" onclick="switchTab('${item.id}', 'analisis')">
+                💡 Análisis Coyuntural
+              </button>
+            </div>
+
+            <!-- Pestaña 1: Datos e Histórico -->
+            <div class="tab-content active" id="tab-content-${item.id}-datos">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <div class="detail-label">Fuente Oficial / Mercado</div>
+                  <div class="detail-val">${item.fuente}</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Período de Referencia</div>
+                  <div class="detail-val">${item.periodo}</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Fecha del Día Actual</div>
+                  <div class="detail-val">${fechaHoyFormateada}</div>
+                </div>
+              </div>
+
+              <div class="history-title">📊 Histórico y Registro Comparativo</div>
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>Período / Fecha</th>
+                    <th>Valor</th>
+                    <th>Fuente Registrada</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${historyRows}
+                </tbody>
+              </table>
+
+              <div class="methodology-box">
+                💡 <strong>Detalle de la fuente:</strong> ${item.nota}
+              </div>
+            </div>
+
+            <!-- Pestaña 2: Parámetros del Semáforo -->
+            <div class="tab-content" id="tab-content-${item.id}-semaforo">
+              <div class="tab-section-title">Evaluación Técnica del Estado Actual</div>
+              <div class="eval-reason-box">
+                ${item.evaluacion_corta}
+              </div>
+
+              <div class="criteria-box">
+                <div class="criteria-title">📐 Parámetros Técnicos de Evaluación Macroeconómica</div>
+                <div class="criteria-list">
+                  <div class="criteria-row">
+                    <span class="legend-dot dot-verde"></span>
+                    <span><strong>Verde:</strong> ${item.criterio_evaluacion.verde}</span>
+                  </div>
+                  <div class="criteria-row">
+                    <span class="legend-dot dot-amarillo"></span>
+                    <span><strong>Amarillo:</strong> ${item.criterio_evaluacion.amarillo}</span>
+                  </div>
+                  <div class="criteria-row">
+                    <span class="legend-dot dot-rojo"></span>
+                    <span><strong>Rojo:</strong> ${item.criterio_evaluacion.rojo}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pestaña 3: ¿Qué es este indicador? -->
+            <div class="tab-content" id="tab-content-${item.id}-quees">
+              <div class="tab-section-title">¿Qué es este indicador?</div>
+              <p class="tab-paragraph">${item.que_es}</p>
+            </div>
+
+            <!-- Pestaña 4: Análisis Coyuntural -->
+            <div class="tab-content" id="tab-content-${item.id}-analisis">
+              <div class="tab-section-title">Análisis Coyuntural de Causa-Efecto</div>
+              ${analisisParagraphs}
+            </div>
+
+          </div>
+        </div>
+      `;
+
+      container.insertAdjacentHTML('beforeend', cardHTML);
+
+      if (item.pregunta_entre_cuadros) {
+        const questionHTML = `
+          <div class="between-cards-question">
+            💡 <strong>Reflexión para tu empresa:</strong> "${item.pregunta_entre_cuadros}" 
+            <a href="https://wa.me/59165050351?text=Hola%20Daniel,%20quisiera%20agendar%20una%20sesi%C3%B3n%20de%20consultor%C3%ADa%20sobre%20${encodeURIComponent(item.nombre)}" target="_blank">
+              Consultar a Daniel Simons &#10140;
+            </a>
+          </div>
+        `;
+        container.insertAdjacentHTML('beforeend', questionHTML);
+      }
+    });
+  }
+
+  function toggleCardTab(id, targetTab) {
+    const details = document.getElementById(`details-${id}`);
+    const card = document.getElementById(`card-${id}`);
+
+    if (details.style.display !== "block") {
+      details.style.display = "block";
+      card.classList.add("open");
+      switchTab(id, targetTab);
+    } else {
+      const currentActiveTab = document.querySelector(`#details-${id} .tab-content.active`).id;
+      if (currentActiveTab === `tab-content-${id}-${targetTab}`) {
+        details.style.display = "none";
+        card.classList.remove("open");
+        clearActiveActions(id);
+      } else {
+        switchTab(id, targetTab);
+      }
+    }
+  }
+
+  function clearActiveActions(id) {
+    const semBtn = document.getElementById(`btn-${id}-semaforo`);
+    const queesBtn = document.getElementById(`btn-${id}-quees`);
+    const analisisBtn = document.getElementById(`btn-${id}-analisis`);
+    if (semBtn) semBtn.classList.remove('active-btn');
+    if (queesBtn) queesBtn.classList.remove('active-btn');
+    if (analisisBtn) analisisBtn.classList.remove('active-btn');
+  }
+
+  function switchTab(id, tabName) {
+    const card = document.getElementById(`card-${id}`);
+    const tabBtns = card.querySelectorAll('.tab-btn');
+    const tabContents = card.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    clearActiveActions(id);
+
+    // Resaltado visual del botón de acción activo en la barra superior fija
+    if (tabName === 'semaforo') {
+      const semBtn = document.getElementById(`btn-${id}-semaforo`);
+      if (semBtn) semBtn.classList.add('active-btn');
+    } else if (tabName === 'quees') {
+      const queesBtn = document.getElementById(`btn-${id}-quees`);
+      if (queesBtn) queesBtn.classList.add('active-btn');
+    } else if (tabName === 'analisis') {
+      const analisisBtn = document.getElementById(`btn-${id}-analisis`);
+      if (analisisBtn) analisisBtn.classList.add('active-btn');
+    }
+
+    const targetTabBtn = document.getElementById(`tab-btn-${id}-${tabName}`);
+    const targetTabContent = document.getElementById(`tab-content-${id}-${tabName}`);
+    if (targetTabBtn) targetTabBtn.classList.add('active');
+    if (targetTabContent) targetTabContent.classList.add('active');
+  }
+
+  function toggleMethodologyBanner() {
+    const banner = document.getElementById('methodologyBanner');
+    if (banner.style.display === 'block') {
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'block';
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", renderDashboard);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía y Análisis de Indicadores Económicos de Bolivia | Daniel Simons</title>
+  <style>
+    :root {
+      --bg-color: #000000;
+      --card-bg: #0d0d0d;
+      --card-border: rgba(188, 167, 114, 0.25);
+      --gold-accent: #BCA772;
+      --gold-hover: #d4a017;
+      --text-main: #FFFFFF;
+      --text-muted: #B7BEC9;
+      --text-subtle: #8892B0;
+
+      --sem-verde-text: #2ecc71;
+      --sem-amarillo-text: #f1c40f;
+      --sem-rojo-text: #e74c3c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px 12px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header de Página */
+    .page-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 14px auto;
+    }
+
+    /* Navegación al Dashboard Principal */
+    .back-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(188, 167, 114, 0.12);
+      border: 1px solid var(--card-border);
+      color: var(--gold-accent);
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(188, 167, 114, 0.25);
+      color: #ffffff;
+    }
+
+    /* Barra de Navegación Rápida por Indicadores */
+    .quick-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 4px 14px 4px;
+      margin-bottom: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-accent) var(--card-bg);
+    }
+
+    .quick-nav-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .quick-nav-btn:hover {
+      background: rgba(188, 167, 114, 0.2);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+    }
+
+    /* Sección Bloque */
+    .section-block {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 24px;
+      scroll-margin-top: 80px !important;
+      transition: outline 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(188, 167, 114, 0.2);
+    }
+
+    .sub-block {
+      margin-bottom: 20px;
+      scroll-margin-top: 80px !important;
+      padding: 8px;
+      border-radius: 6px;
+      transition: outline 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    }
+
+    .sub-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .sub-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .paragraph {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .paragraph:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Caja de Evaluación del Semáforo */
+    .eval-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid var(--gold-accent);
+      border-radius: 6px;
+      padding: 14px;
+      margin: 10px 0 16px 0;
+      scroll-margin-top: 80px !important;
+      transition: outline 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    }
+
+    .eval-params {
+      font-size: 12px;
+      color: var(--text-subtle);
+      margin-bottom: 8px;
+    }
+
+    .eval-reason {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .dot-v { background: var(--sem-verde-text); }
+    .dot-a { background: var(--sem-amarillo-text); }
+    .dot-r { background: var(--sem-rojo-text); }
+
+    /* Highlight effect for targeted element */
+    .target-highlight {
+      outline: 2px solid var(--gold-accent) !important;
+      border-color: var(--gold-accent) !important;
+      box-shadow: 0 0 18px rgba(188, 167, 114, 0.4) !important;
+      background: rgba(188, 167, 114, 0.1) !important;
+    }
+
+    /* Listas técnicas */
+    .list-item {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-left: 12px;
+    }
+
+    /* Footer */
+    .page-footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Encabezado -->
+  <header class="page-header">
+    <h1 class="page-title">Guía y Análisis Coyuntural de Indicadores Económicos</h1>
+    <p class="page-subtitle">
+      Compendio analítico y metodológico sobre los principales indicadores económicos de Bolivia. Criterios de evaluación técnica y lectura sistémica.
+    </p>
+    <a href="https://www.danielsimons.xyz/p/indicadores-economicos-de-bolivia.html" class="back-btn">
+      &#10140; Volver al Dashboard de Indicadores
+    </a>
+  </header>
+
+  <!-- Navegación Rápida Interna -->
+  <nav class="quick-nav">
+    <a href="javascript:void(0)" onclick="manualJump('metodologia-semaforo')" class="quick-nav-btn">🚦 Metodología Semáforo</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-tc-paralelo')" class="quick-nav-btn">💵 Dólar Paralelo</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-tc-oficial')" class="quick-nav-btn">🏛️ Dólar Oficial</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-inflacion')" class="quick-nav-btn">📈 Inflación</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-reservas')" class="quick-nav-btn">🏦 RIN</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-balanza')" class="quick-nav-btn">⚖️ Balanza Comercial</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-embi')" class="quick-nav-btn">📊 Riesgo País</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-oro-intl')" class="quick-nav-btn">🪙 Oro Exportación</a>
+    <a href="javascript:void(0)" onclick="manualJump('que-es-pib')" class="quick-nav-btn">📉 PIB</a>
+  </nav>
+
+  <!-- Metodología del Semáforo -->
+  <section class="section-block" id="metodologia-semaforo" name="metodologia-semaforo">
+    <h2 class="section-title">Metodología y Criterios del Semáforo Macroeconómico</h2>
+    
+    <div class="sub-block">
+      <h3 class="sub-title">Propósito de la Evaluación</h3>
+      <p class="paragraph">
+        El semáforo asigna un estado visual a cada indicador comparando la cifra oficial reportada frente a parámetros de estabilidad macroeconómica recomendados por organismos internacionales como el FMI, Banco Mundial y normativas del Banco Central de Bolivia.
+      </p>
+      <p class="paragraph">
+        Esta clasificación permite a empresarios, inversionistas y ciudadanos identificar de un solo vistazo el nivel de tensión o equilibrio que presenta cada variable en la coyuntura actual.
+      </p>
+    </div>
+
+    <div class="sub-block">
+      <h3 class="sub-title">Criterios de los Tres Niveles de Estado</h3>
+      <div class="list-item">
+        <span class="dot dot-v"></span><strong>Nivel Verde (Estable / Saludable):</strong> Indica que la variable opera dentro de rangos sostenibles de equilibrio. En este nivel, el indicador no genera presiones sobre la estructura de costos empresariales ni sobre el poder adquisitivo.
+      </div>
+      <div class="list-item">
+        <span class="dot dot-a"></span><strong>Nivel Amarillo (Precaución / Zona de Alerta):</strong> Señala variables que atraviesan presiones moderadas o fases de ajuste en desarrollo. Requieren seguimiento constante porque pueden trasladar volatilidad a la liquidez bancaria o precios finales.
+      </div>
+      <div class="list-item">
+        <span class="dot dot-r"></span><strong>Nivel Rojo (Crítico / Alto Riesgo):</strong> Advierte desviaciones significativas respecto a umbrales de estabilidad. Expresa una distorsión estructural que exige ajustes preventivos en la gestión de costos, liquidez y toma de decisiones.
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. Dólar Paralelo -->
+  <section class="section-block" id="sec-tc-paralelo">
+    <h2 class="section-title">Dólar Paralelo / Mercado Libre</h2>
+    
+    <div class="sub-block" id="que-es-tc-paralelo" name="que-es-tc-paralelo">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        El dólar en mercado libre refleja la cotización real de la divisa estadounidense en operaciones no reguladas y plataformas P2P. A diferencia del tipo fijado por decreto, este valor se determina por la oferta y demanda directa de agentes económicos. Es el termómetro más fiel del costo real de reposición de insumos importados.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-tc-paralelo" name="evaluacion-tc-paralelo">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (&lt; 5% de brecha vs oficial) | Amarillo (5% - 15%) | Rojo (&gt; 15%).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-v"></span> <strong>Estado Actual: Verde (Estabilizado).</strong> Se evalúa en Verde porque la cotización de 11,75 Bs muestra convergencia y alineación con el tipo de cambio oficial flexible, estabilizando el costo de reposición no regulado.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-tc-paralelo" name="analisis-tc-paralelo">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        La convergencia observada responde al mayor flujo de dólares provenientes del superávit comercial y a la flexibilidad cambiaria oficial. La reducción de la brecha respecto al dólar bancario disminuye la distorsión de precios en el comercio mayorista.
+      </p>
+      <p class="paragraph">
+        Para empresas e importadores, esta estabilidad relativa reduce el riesgo de cotizaciones especulativas de corto plazo y facilita la planificación de inventarios.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. Dólar Oficial -->
+  <section class="section-block" id="sec-tc-oficial">
+    <h2 class="section-title">Dólar Oficial (BCB)</h2>
+    
+    <div class="sub-block" id="que-es-tc-oficial" name="que-es-tc-oficial">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        Es la cotización fijada diariamente por el Banco Central de Bolivia para operaciones bancarias y comercio exterior formal. Representa la tasa institucional a la que el sistema financiero liquida obligaciones con el exterior y calcula la conversión de pasivos en moneda extranjera.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-tc-oficial" name="evaluacion-tc-oficial">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (Variación anual &lt; 3%) | Amarillo (3% - 10%) | Rojo (&gt; 10%).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-r"></span> <strong>Estado Actual: Rojo (Crítico / Ajuste).</strong> Se evalúa en Rojo debido a que la cotización oficial se ajustó de 6,96 Bs a 12,13 Bs bajo el régimen flexible, representando una variación porcentual superior al 10% anual respecto al ancla previa.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-tc-oficial" name="analisis-tc-oficial">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        La transición del régimen fijo a un esquema flexible busca sincerar la paridad monetaria con la realidad del mercado. Este ajuste ha permitido reordenar la liquidación de divisas en la banca comercial, reduciendo el descalce entre la cotización bancaria y el mercado libre.
+      </p>
+      <p class="paragraph">
+        El desafío central radica en anclar las expectativas de costos para evitar un traslado excesivo a precios finales y garantizar la certidumbre de contratos a mediano plazo.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Inflación -->
+  <section class="section-block" id="sec-inflacion">
+    <h2 class="section-title">Inflación (IPC)</h2>
+    
+    <div class="sub-block" id="que-es-inflacion" name="que-es-inflacion">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        El Índice de Precios al Consumidor (IPC) mide la variación porcentual periódica del costo de una canasta representativa de bienes y servicios. Es el indicador directo del nivel de erosión sobre el poder adquisitivo de la moneda nacional.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-inflacion" name="evaluacion-inflacion">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (&lt; 4.0% anual) | Amarillo (4.0% - 7.0%) | Rojo (&gt; 7.0% interanual).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-r"></span> <strong>Estado Actual: Rojo (Crítico / Alta Presión).</strong> Se clasifica en Rojo porque la inflación acumulada del 4,82% en el primer semestre sitúa la variación interanual a doce meses en 9,23%, superando el margen de tolerancia macroeconómica.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-inflacion" name="analisis-inflacion">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        El ritmo interanual del 9,23% refleja el encarecimiento de bienes importados e insumos agrícolas debido al periodo de ajuste cambiario.
+      </p>
+      <p class="paragraph">
+        Para las unidades productivas, este escenario exige optimizar la estructura de costos fijos y recalcular márgenes operacionales para proteger la sostenibilidad del flujo de caja.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Reservas Internacionales -->
+  <section class="section-block" id="sec-reservas">
+    <h2 class="section-title">Reservas Internacionales Netas (RIN)</h2>
+    
+    <div class="sub-block" id="que-es-reservas" name="que-es-reservas">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        Las RIN representan los activos financieros en divisas y oro custodiados por el Banco Central para respaldar la moneda nacional y garantizar el pago de deuda externa e importaciones esenciales.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-reservas" name="evaluacion-reservas">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (Divisas &gt; 3 meses imp) | Amarillo (Oro alto, divisas en zona de amortiguación) | Rojo (Divisas en mínimos).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-a"></span> <strong>Estado Actual: Amarillo (Precaución / Monitoreo).</strong> Se evalúa en Amarillo porque el saldo total de 3.617,3 MM USD está respaldado por reservas de oro físico ($2.882,9M), aunque la liquidez de divisas operativas ($666,1M) permanece bajo seguimiento constante.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-reservas" name="analisis-reservas">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        El saldo se sostiene prioritariamente en el valor de las reservas de oro físico, mientras que la liquidez en divisas operativas permanece bajo monitoreo estrecho.
+      </p>
+      <p class="paragraph">
+        El fortalecimiento continuo del superávit comercial será el canal principal para reconstituir el componente líquido de las reservas durante el segundo semestre.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Balanza Comercial -->
+  <section class="section-block" id="sec-balanza">
+    <h2 class="section-title">Balanza Comercial</h2>
+    
+    <div class="sub-block" id="que-es-balanza" name="que-es-balanza">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        Es la diferencia contable entre el valor monetario total de las exportaciones e importaciones de un país. Un saldo positivo indica que la economía genera más divisas por ventas al exterior de las que gasta en compras externas.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-balanza" name="evaluacion-balanza">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (Superávit &gt; $0) | Amarillo (Déficit &lt; 2% PIB) | Rojo (Déficit &gt; 2% PIB).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-v"></span> <strong>Estado Actual: Verde (Superávit Comercial).</strong> Se evalúa en Verde al acumular un superávit de 1.669 MM USD en el primer semestre de 2026, aportando un saldo neto positivo en el flujo de divisas del país.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-balanza" name="analisis-balanza">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        El superávit acumulado de 1.669 MM USD al primer semestre constituye el pilar de estabilización del mercado monetario.
+      </p>
+      <p class="paragraph">
+        La recuperación de exportaciones agroindustriales e industriales compensó la caída en hidrocarburos, generando una oferta neta de dólares que alivia la liquidez del sistema.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. Riesgo País -->
+  <section class="section-block" id="sec-embi">
+    <h2 class="section-title">Riesgo País (EMBI Bolivia)</h2>
+    
+    <div class="sub-block" id="que-es-embi" name="que-es-embi">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        El índice EMBI elaborado por JP Morgan mide la sobretasa o diferencial de rendimiento que deben pagar los bonos soberanos de Bolivia frente a los títulos del Tesoro de Estados Unidos. Expresa la percepción internacional sobre la solvencia del Estado.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-embi" name="evaluacion-embi">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (&lt; 400 pbs) | Amarillo (400 - 800 pbs) | Rojo (&gt; 800 pbs).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-a"></span> <strong>Estado Actual: Amarillo (Riesgo Moderado).</strong> Se clasifica en Amarillo con 430 puntos básicos tras una contracción importante desde los 605 pbs de mayo, reflejando una moderación del riesgo en los mercados internacionales.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-embi" name="analisis-embi">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        La contracción del riesgo país a 430 puntos básicos en agosto refleja una recepción favorable por parte de los mercados internacionales ante el sinceramiento del esquema cambiario.
+      </p>
+      <p class="paragraph">
+        Un EMBI a la baja reduce progresivamente el costo de financiamiento externo para la banca y grandes empresas.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. Cotización del Oro -->
+  <section class="section-block" id="sec-oro-intl">
+    <h2 class="section-title">Cotización del Oro (Exportación)</h2>
+    
+    <div class="sub-block" id="que-es-oro-intl" name="que-es-oro-intl">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        Es el precio internacional de la onza troy de oro en mercados globales (LBMA). Determina directamente el valor de las reservas físicas del BCB y los ingresos por regalías mineras de las regiones exportadoras.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-oro-intl" name="evaluacion-oro-intl">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (&gt; $2.200/oz) | Amarillo ($1.800 - $2.200/oz) | Rojo (&lt; $1.800/oz).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-v"></span> <strong>Estado Actual: Verde (Precio Histórico Alto).</strong> Se evalúa en Verde debido a cotizaciones históricas superiores a $2.450 USD/oz, favoreciendo directamente la valoración de las RIN y los ingresos mineros del país.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-oro-intl" name="analisis-oro-intl">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        Los niveles históricos superiores a $2.450 USD/oz actúan como un amortiguador de valor para el balance del Banco Central.
+      </p>
+      <p class="paragraph">
+        El alto precio internacional valoriza de forma automática el activo de reserva nacional y maximiza los ingresos por exportaciones mineras.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. Crecimiento del PIB -->
+  <section class="section-block" id="sec-pib">
+    <h2 class="section-title">Crecimiento del PIB</h2>
+    
+    <div class="sub-block" id="que-es-pib" name="que-es-pib">
+      <h3 class="sub-title">¿Qué es este indicador?</h3>
+      <p class="paragraph">
+        El Producto Interno Bruto evalúa la suma total del valor monetario de la producción de bienes y servicios finales generados dentro del país durante un periodo determinado.
+      </p>
+    </div>
+
+    <div class="eval-box" id="evaluacion-pib" name="evaluacion-pib">
+      <div class="eval-params">
+        <strong>Parámetros de Evaluación:</strong> Verde (&gt; 3,5% anual) | Amarillo (1,5% - 3,5% anual) | Rojo (&lt; 1,5% anual).
+      </div>
+      <div class="eval-reason">
+        <span class="dot dot-a"></span> <strong>Estado Actual: Amarillo (Crecimiento Moderado).</strong> Se califica en Amarillo con un crecimiento del 2,10%, lo que evidencia una expansión moderada durante la fase de ajuste macroeconómico.
+      </div>
+    </div>
+
+    <div class="sub-block" id="analisis-pib" name="analisis-pib">
+      <h3 class="sub-title">Análisis Coyuntural</h3>
+      <p class="paragraph">
+        La tasa de expansión del 2,10% evidencia una fase de crecimiento moderado en medio de la reestructuración macroeconómica.
+      </p>
+      <p class="paragraph">
+        La dinámica económica depende de la capacidad del sector privado para absorber los nuevos costos de producción y dinamizar sectores estratégicos como la manufactura y los servicios.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="page-footer">
+    Compendio de Transparencia Económica • www.danielsimons.xyz
+  </footer>
+
+</div>
+
+<!-- Motor de Desplazamiento Directo Infalible para Blogger -->
+<script>
+  function manualJump(targetId) {
+    const target = document.getElementById(targetId) || document.querySelector(`[name="${targetId}"]`);
+    if (target) {
+      target.classList.add('target-highlight');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        target.classList.remove('target-highlight');
+      }, 3500);
+    }
+  }
+
+  function autoDetectAndJump() {
+    let ref = null;
+
+    // 1. Probar desde URL Search Parameters (?ref=...)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      ref = urlParams.get('ref');
+    } catch (e) {}
+
+    // 2. Si no hay ?ref=, probar desde el Hash (#...)
+    if (!ref && window.location.hash) {
+      ref = window.location.hash.replace('#', '');
+    }
+
+    if (ref) {
+      manualJump(ref);
+    }
+  }
+
+  // Ejecución multietapa para vencer scripts pesados o layouts asíncronos de Blogger
+  document.addEventListener('DOMContentLoaded', autoDetectAndJump);
+  window.addEventListener('load', function() {
+    autoDetectAndJump();
+    setTimeout(autoDetectAndJump, 250);
+    setTimeout(autoDetectAndJump, 750);
+    setTimeout(autoDetectAndJump, 1500);
+  });
+  window.addEventListener('hashchange', autoDetectAndJump);
+</script>
+
+</body>
+</html>

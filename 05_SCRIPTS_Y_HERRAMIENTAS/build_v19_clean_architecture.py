@@ -1,0 +1,540 @@
+import os
+import xml.etree.ElementTree as ET
+
+root_dir = r"c:\Users\Usuario\Desktop\antigravity\blogger_danielsimons.xyz"
+v16_path = os.path.join(root_dir, r"tema_optimizado\v16_theme_optimizado.xml")
+source_path = os.path.join(root_dir, r"copia de seguridad del tema web\theme-433667097766389126.xml")
+output_dir = os.path.join(root_dir, "tema_optimizado")
+output_path = os.path.join(output_dir, "v19_theme_optimizado.xml")
+
+with open(source_path, "r", encoding="utf-8") as f:
+    xml_base = f.read()
+
+# Live Page URLs on Blogger:
+URL_POST_1 = "https://www.danielsimons.xyz/2026/08/de-la-idea-escolar-al-proyecto-ordenado.html"
+URL_DESTILADO = "https://www.danielsimons.xyz/p/destilado-de-ideas-de-negocio_0599447061.html"
+URL_FORJA = "https://www.danielsimons.xyz/p/forja-disciplina-habitos-y-lucidez.html"
+URL_MARKETING = "https://www.danielsimons.xyz/p/marketing-360.html"
+URL_MYPE = "https://www.danielsimons.xyz/p/impulso-mype-360.html"
+URL_JUEGO = "https://www.danielsimons.xyz/p/el-juego-del-emprendedor-libro-para.html"
+URL_MFEIR = "https://www.danielsimons.xyz/p/liberalismo-vs-socialismo.html"
+URL_URBANIZACIONES = "https://www.danielsimons.xyz/p/propuesta-urbanizaciones.html"
+URL_TRANSPARENCIA = "https://www.danielsimons.xyz/p/transparencia-inteligente.html"
+URL_ELECTORAL = "https://www.danielsimons.xyz/p/estrategia-electoral-2026.html"
+URL_TESIS = "https://www.danielsimons.xyz/p/guia-tesis.html"
+URL_MARCA = "https://www.danielsimons.xyz/p/evaluar-desarrollo-de-marca.html"
+URL_TODAS = "https://www.danielsimons.xyz/search"
+
+# REAL BLOGGER CDN IMAGE URLS FROM DANIEL SIMONS' PAGES
+REAL_IMG_ART1 = "https://raw.githubusercontent.com/antigravity/danielsimons/main/foto_articulo1_bth_cuadrada.jpg"
+REAL_IMG_MARKETING = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYJCXk6Cvf1Wv4cFuXUOlwbeqz-JnpsUDem9Vu15MuCcq-aKlbC4WWQKm7XIukzYi-3VGZFsMTstX2xccjSzH0rgx-THfQDPkb5vKB9mEmRznN6FY7KnB57xQb4A8HhpZNfq3zExWODRxpwHiAs4m2tL77ojXGiurJGhYR0PFMzWXysVU8BrCvNB-vXfTV/s400/1marketing360danielsimons.webp"
+REAL_IMG_MYPE = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho8rNnDbMAzbmXfzD6UVCuLzpvznWAJUviIhuSaLxzHwk0mve_-szi81FuJWq-Ty3SVfsUP4dEWt0whytSUjJkN-PnhAILpScipzraTqLFQRIKaewb6UgJDUKuQAwGpIfDotB8UoPOtFYpId7nnr3MoZhTJNPl3dXY3qJTbdQaNSP4rvYXQz4ku1PNYeW5/s400/1impulsomype360danielsimons.webp"
+REAL_IMG_JUEGO = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0_W9ImaOofGpPg4nKkSdwKXB4VeWya_6_rN-v8rJ5yVPayXWXE1AkRAaZRJCrxkk-DJ2PGNsgvP2Nq9PD5YKT2KUJ1i1JG0doww5YQtNmhHkPIOg-nx30S6bTdYdAI3f7ovcebKFeunio-dbH5IPgqkavhxpxFHJA6DUut5mPRBZBAMLQWcJgi1W5uYHv/s400/1eljuegodelemprendedordanielsimons.webp"
+REAL_IMG_MFEIR = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-7bVKC9riJ4cRMJM2UIQtAtL54DIIU4OAKLfz52CmYoIRtui7PQRyTjCVkbXkVuE9F2Kj9kVgDwAv4roia3wlON8uQxhkaUMgY1SdnqLNj0-mQXC4PaBbB-pdMoh_vJ2RFRFGnlwmrr9mIaLQ5V0cuMMq5CxkLswjOoJJqkXB1xGJGcRODVEbuNnMw-ZU/w400-h400/TAPA%201000X1000-01.png"
+REAL_IMG_URBANIZACIONES = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCOWWAQFlSD35DRltMAHOhr11wzttRWSilqXdqQFXEhJcC_sevp2GSGPSNVXSJ41zP3AbOrwTFRwRvo4Kw723KFMrK9_R3kw7_NodbG4-HnTnczMk-GH2QyJoUzmH2YM3J4Boa4jdRCitz-7A9tYQxBQfYajJ6iB7dAVQy2QUzgpocOg59AE8C-vfnIDWt/s400/1propuestainmobiliariadanielsimons.webp"
+REAL_IMG_TRANSPARENCIA = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVpeeWq2pRs7MtLsHJ6uXhO5DrJcIAl9slALqESDa3ngxqOI7Z22o0tolYOWvuD0pARVQqhui_k2SKUWg975hqpUQP3UuDd_fihZFdXiegtX-rG-U_HUFRL275X0Ydxtt_Vx-FWNEA8MX-c9mi6xTe6AycD6G9uoqJn1IzdYNg4kXt4xKfcUOCOllGYgbJ/s400/1tranaparenciainteligentedanielsimons.webp"
+REAL_IMG_TESIS = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3R3HKNWS-yFvyk6bJ5lRP1bNaN6e5LHb4O1lb636MgMot-ty4_ouYM7-tYtjJ0rtDWhiKHHflwOUxYKKw3KWHVibRPTqEK6kJVg9i3VKPEGw_HJCceM1VG_ZjsbNHF3UY55yN9BsQjvqlkNXU5H88QkrEMkYOHtEKqFrWpk26YT0jrFJ1_4OApFAysCiL/s400/1guiasobreviviendoalatesisdanielsimons.webp"
+REAL_IMG_MARCA = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiOcZ6Dy2VPH8B7yyz-FHKUHulg9Surq8YpZcf7uUF1kNVSljFB-spdmPzljL07lj5b1CtTo7H0uWw1lxhMODxrfWNMSxdJbnhoQaZt_qJt6r6wGYk_4NeVL4jasaThrpDLPG3sHUqL4Uwy0_pjwt4A7TpAXsIpBA_XHVf0i4SCEl9By72NzGrZIVk2Jn1P/w400-h400/marca-01.png"
+
+# SEO METADATA BLOCK
+seo_block = """
+  <!-- ================================================================= -->
+  <!-- 1. BLOQUE DE METADATOS Y SEO DINÁMICO (OPEN GRAPH & TWITTER)       -->
+  <!-- ================================================================= -->
+  <b:if cond='data:view.isSingleItem'>
+    <meta expr:content='data:view.title.escaped + " | Daniel Simons"' property='og:title'/>
+    <meta expr:content='data:view.title.escaped + " | Daniel Simons"' name='twitter:title'/>
+    <b:if cond='data:view.description'>
+      <meta expr:content='data:view.description' name='description'/>
+      <meta expr:content='data:view.description' property='og:description'/>
+      <meta expr:content='data:view.description' name='twitter:description'/>
+    <b:else/>
+      <meta expr:content='data:view.title.escaped + " - De ideas complejas a resultados concretos por Daniel Simons."' name='description'/>
+      <meta expr:content='data:view.title.escaped + " - De ideas complejas a resultados concretos por Daniel Simons."' property='og:description'/>
+      <meta expr:content='data:view.title.escaped + " - De ideas complejas a resultados concretos por Daniel Simons."' name='twitter:description'/>
+    </b:if>
+    <meta content='article' property='og:type'/>
+  <b:else/>
+    <meta content='Daniel Simons | De ideas complejas a resultados concretos' property='og:title'/>
+    <meta content='Daniel Simons | De ideas complejas a resultados concretos' name='twitter:title'/>
+    <meta content='Portal oficial de Daniel Simons. Estructurador de ideas complejas, Forja de Proyectos, Destilado de Conocimiento, Modelo MFEIR y Observatorio Económico.' name='description'/>
+    <meta content='Portal oficial de Daniel Simons. Estructurador de ideas complejas, Forja de Proyectos, Destilado de Conocimiento, Modelo MFEIR y Observatorio Económico.' property='og:description'/>
+    <meta content='Portal oficial de Daniel Simons. Estructurador de ideas complejas, Forja de Proyectos, Destilado de Conocimiento, Modelo MFEIR y Observatorio Económico.' name='twitter:description'/>
+    <meta content='website' property='og:type'/>
+  </b:if>
+  
+  <meta content='Daniel Simons' name='author'/>
+  <meta content='Daniel Simons' property='og:site_name'/>
+  <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta content='index, follow, max-image-preview:large' name='robots'/>
+"""
+
+# MODULARIZED CLEAN CSS & JS BLOCK
+css_block = """
+  <!-- ================================================================= -->
+  <!-- 2. ARQUITECTURA DE ESTILOS CSS CENTRALIZADA Y MODULAR (.ds-)     -->
+  <!-- ================================================================= -->
+  <style type='text/css'>
+  /*<![CDATA[*/
+    /* --- ESTRUCTURA Y FONDO GLOBAL (#000000) --- */
+    html, body, .page_body, .centered-top-container, .centered-top-placeholder, 
+    #main, .centered-bottom, .post, .post-outer, .post-outer-container, 
+    .post-body, .hero-image, .bg-photo, .page {
+      background-color: #000000 !important;
+      background: #000000 !important;
+      color: #e0e0e0 !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    /* OCULTAR SIDEBAR INNECESARIO */
+    .sidebar-container, .sidebar-back, #sidebar-left, .hamburger-menu-container {
+      display: none !important;
+    }
+
+    /* ANCHO Y ALINEACIÓN DEL CONTENEDOR PRINCIPAL */
+    #main, .page, .centered-bottom, .post-outer-container, .centered-top-container {
+      width: 100% !important;
+      max-width: 1040px !important;
+      margin: 0 auto !important;
+      padding: 0 40px !important;
+      float: none !important;
+      left: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (max-width: 767px) {
+      #main, .page, .centered-bottom, .post-outer-container, .centered-top-container {
+        padding: 0 15px !important;
+      }
+    }
+
+    /* CABECERA Y LOGOTIPO DANIEL SIMONS */
+    .Header, #Header1, .header-widget {
+      background: #000000 !important;
+      text-align: center !important;
+      margin: 15px 0 25px 0 !important;
+      padding: 0 !important;
+    }
+
+    .Header img, #Header1 img {
+      width: 100% !important;
+      max-width: 900px !important;
+      height: auto !important;
+      max-height: 260px !important;
+      object-fit: contain !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* SECCIONES Y ENCABEZADOS */
+    .ds-section-block {
+      margin: 35px 0;
+      position: relative;
+    }
+
+    .ds-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(188, 167, 114, 0.25);
+    }
+
+    .ds-section-header h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+
+    .ds-section-header h2 span {
+      color: #bca772;
+    }
+
+    .ds-section-link {
+      font-size: 11px;
+      font-weight: 700;
+      color: #bca772 !important;
+      text-transform: uppercase;
+      text-decoration: none !important;
+    }
+
+    /* NAVEGACIÓN FLECHAS DORADAS (❮ ❯) */
+    .ds-nav-arrows {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ds-arrow-btn {
+      background: #0d0d0d;
+      border: 1px solid rgba(188, 167, 114, 0.4);
+      color: #bca772;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+
+    .ds-arrow-btn:hover {
+      background: #bca772;
+      color: #000000;
+      border-color: #bca772;
+    }
+
+    /* CARRUSEL HORIZONTAL FLUIDO CON SCROLL SNAP NATIVO */
+    .ds-carousel-track {
+      display: flex !important;
+      gap: 16px !important;
+      overflow-x: auto !important;
+      scroll-behavior: smooth !important;
+      scroll-snap-type: x mandatory !important;
+      padding-bottom: 12px !important;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .ds-carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* CAJAS DE TARJETAS MODULARES INDEPENDIENTES */
+    .ds-card-box {
+      flex: 0 0 calc(33.333% - 11px) !important;
+      min-width: 260px !important;
+      scroll-snap-align: start !important;
+      background: #0d0d0d;
+      border: 1px solid rgba(188, 167, 114, 0.25);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      box-sizing: border-box !important;
+      text-decoration: none !important;
+    }
+
+    @media (max-width: 767px) {
+      .ds-card-box {
+        flex: 0 0 calc(50% - 8px) !important;
+        min-width: 210px !important;
+        padding: 12px !important;
+      }
+    }
+
+    .ds-card-box:hover {
+      border-color: #bca772;
+      transform: translateY(-3px);
+      background: #111111;
+    }
+
+    /* MINIATURAS REALES CUADRADAS 1:1 */
+    .ds-card-thumb {
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 1 / 1 !important;
+      border-radius: 6px !important;
+      object-fit: cover !important;
+      margin-bottom: 12px !important;
+      border: 1px solid rgba(188, 167, 114, 0.3) !important;
+      display: block !important;
+      background: #141414;
+    }
+
+    /* TIPOGRAFÍA DE TARJETAS Y REGLA DE CELULARES (15px) */
+    .ds-card-box .title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 767px) {
+      .ds-card-box .title {
+        font-size: 15px !important;
+        line-height: 1.3 !important;
+        font-weight: 700 !important;
+      }
+    }
+
+    .ds-card-box .desc {
+      font-size: 11px;
+      color: #888888;
+      line-height: 1.3;
+    }
+
+    .ds-card-box .action {
+      font-size: 11px;
+      font-weight: 700;
+      color: #bca772;
+      margin-top: 10px;
+    }
+
+    /* BLOQUE QUIÉN SOY */
+    .ds-bio-card {
+      background: #0d0d0d;
+      border: 1px solid rgba(188, 167, 114, 0.3);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ds-bio-card h3 {
+      font-size: 20px;
+      color: #bca772;
+      margin: 0 0 6px 0;
+      font-weight: 800;
+    }
+
+    .ds-bio-card p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cccccc;
+      margin: 0;
+    }
+  /*]]>*/
+  </style>
+
+  <script type='text/javascript'>
+  //<![CDATA[
+    // FUNCIÓN DE NAVEGACIÓN INDEPENDIENTE POR SECCIÓN (CERO ACOPLAMIENTO)
+    function scrollCarousel(sectionId, direction) {
+      var container = document.getElementById(sectionId);
+      if (container) {
+        var scrollAmount = container.clientWidth * 0.75;
+        container.scrollBy({
+          left: direction * scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    }
+  //]]>
+  </script>
+"""
+
+# HIGHLY DECOUPLED HTML STRUCTURE FOR v19
+frontpage_html_block = f"""
+            <b:if cond='data:view.isHomepage'>
+
+              <!-- ================================================================= -->
+              <!-- BLOQUE 1: ÚLTIMAS ENTRADAS DEL BLOG                                -->
+              <!-- ================================================================= -->
+              <section class="ds-section-block" id="sec-posts">
+                <div class="ds-section-header">
+                  <h2>ÚLTIMAS <span>ENTRADAS DEL BLOG</span></h2>
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <a href="{URL_TODAS}" class="ds-section-link">VER TODAS &#10140;</a>
+                    <div class="ds-nav-arrows">
+                      <div class="ds-arrow-btn" onclick="scrollCarousel('track-posts', -1)">&#10094;</div>
+                      <div class="ds-arrow-btn" onclick="scrollCarousel('track-posts', 1)">&#10095;</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ds-carousel-track" id="track-posts">
+                  <a href="{URL_POST_1}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_ART1}" alt="De la idea escolar al proyecto ordenado" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">De la idea escolar al proyecto ordenado</div>
+                      <div class="desc">Cómo estructurar emprendimientos juveniles BTH con claridad e impacto.</div>
+                    </div>
+                    <div class="action">Leer Artículo &#10140;</div>
+                  </a>
+                </div>
+              </section>
+
+              <!-- ================================================================= -->
+              <!-- BLOQUE 2: SERVICIOS DE ESTRUCTURACIÓN                             -->
+              <!-- ================================================================= -->
+              <section class="ds-section-block" id="sec-services">
+                <div class="ds-section-header">
+                  <h2>SERVICIOS <span>DE ESTRUCTURACIÓN</span></h2>
+                  <div class="ds-nav-arrows">
+                    <div class="ds-arrow-btn" onclick="scrollCarousel('track-services', -1)">&#10094;</div>
+                    <div class="ds-arrow-btn" onclick="scrollCarousel('track-services', 1)">&#10095;</div>
+                  </div>
+                </div>
+
+                <div class="ds-carousel-track" id="track-services">
+                  <a href="{URL_DESTILADO}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_JUEGO}" alt="Destilado de Ideas" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Destilado de Ideas</div>
+                      <div class="desc">Del conocimiento disperso a la claridad ejecutiva.</div>
+                    </div>
+                    <div class="action">Ver Servicio &#10140;</div>
+                  </a>
+
+                  <a href="{URL_FORJA}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_TESIS}" alt="Forja de Proyectos" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Forja de Proyectos</div>
+                      <div class="desc">De la idea a la ejecución sólida y estructurada.</div>
+                    </div>
+                    <div class="action">Ver Servicio &#10140;</div>
+                  </a>
+
+                  <a href="{URL_MARKETING}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_MARKETING}" alt="Marketing 360°" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Marketing 360°</div>
+                      <div class="desc">Estrategias integrales y posicionamiento de marca.</div>
+                    </div>
+                    <div class="action">Ver Servicio &#10140;</div>
+                  </a>
+
+                  <a href="{URL_MYPE}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_MYPE}" alt="Impulso MYPE" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Impulso MYPE</div>
+                      <div class="desc">Acompañamiento técnico a pequeños negocios.</div>
+                    </div>
+                    <div class="action">Ver Servicio &#10140;</div>
+                  </a>
+                </div>
+              </section>
+
+              <!-- ================================================================= -->
+              <!-- BLOQUE 3: PROYECTOS PROPIOS & INVESTIGACIÓN                       -->
+              <!-- ================================================================= -->
+              <section class="ds-section-block" id="sec-projects">
+                <div class="ds-section-header">
+                  <h2>PROYECTOS <span>PROPIOS &amp; INVESTIGACIÓN</span></h2>
+                  <div class="ds-nav-arrows">
+                    <div class="ds-arrow-btn" onclick="scrollCarousel('track-projects', -1)">&#10094;</div>
+                    <div class="ds-arrow-btn" onclick="scrollCarousel('track-projects', 1)">&#10095;</div>
+                  </div>
+                </div>
+
+                <div class="ds-carousel-track" id="track-projects">
+                  <a href="{URL_MFEIR}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_MFEIR}" alt="Modelo MFEIR" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Modelo MFEIR</div>
+                      <div class="desc">Individualidades Relacionales y Análisis Político-Social.</div>
+                    </div>
+                    <div class="action">Conocer Modelo &#10140;</div>
+                  </a>
+
+                  <a href="{URL_JUEGO}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_JUEGO}" alt="El Juego del Emprendedor" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">El Juego del Emprendedor</div>
+                      <div class="desc">Libro y guía metodológica para jóvenes y colegios.</div>
+                    </div>
+                    <div class="action">Ver Libro &#10140;</div>
+                  </a>
+                </div>
+              </section>
+
+              <!-- ================================================================= -->
+              <!-- BLOQUE 4: QUIÉN SOY (DANIEL SIMONS)                               -->
+              <!-- ================================================================= -->
+              <section class="ds-section-block" id="sec-bio">
+                <div class="ds-bio-card">
+                  <h3>DANIEL SIMONS</h3>
+                  <p><strong>Estructurador de Ideas Complejas | IDEAS • ESTRUCTURA • IMPACTO</strong></p>
+                  <p>Convierto ideas dispersas o complejas en soluciones claras, estructuradas y aplicables mediante investigación, análisis, diseño estratégico y desarrollo de proyectos. No vendo únicamente consultoría. Construyo claridad.</p>
+                </div>
+              </section>
+
+              <!-- ================================================================= -->
+              <!-- BLOQUE 5: TRABAJOS Y PROPUESTAS                                  -->
+              <!-- ================================================================= -->
+              <section class="ds-section-block" id="sec-work">
+                <div class="ds-section-header">
+                  <h2>TRABAJOS <span>Y PROPUESTAS</span></h2>
+                  <div class="ds-nav-arrows">
+                    <div class="ds-arrow-btn" onclick="scrollCarousel('track-work', -1)">&#10094;</div>
+                    <div class="ds-arrow-btn" onclick="scrollCarousel('track-work', 1)">&#10095;</div>
+                  </div>
+                </div>
+
+                <div class="ds-carousel-track" id="track-work">
+                  <a href="{URL_URBANIZACIONES}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_URBANIZACIONES}" alt="Propuesta Urbanizaciones" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Propuesta Urbanizaciones</div>
+                      <div class="desc">Estrategias de desarrollo urbano en Santa Cruz.</div>
+                    </div>
+                    <div class="action">Ver Propuesta &#10140;</div>
+                  </a>
+
+                  <a href="{URL_TRANSPARENCIA}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_TRANSPARENCIA}" alt="Transparencia Inteligente" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Transparencia Inteligente</div>
+                      <div class="desc">Modelos de gestión institucional y datos.</div>
+                    </div>
+                    <div class="action">Ver Propuesta &#10140;</div>
+                  </a>
+
+                  <a href="{URL_ELECTORAL}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_MFEIR}" alt="Estrategia Electoral 2026" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Estrategia Electoral 2026</div>
+                      <div class="desc">Análisis político y estratégico para Bolivia.</div>
+                    </div>
+                    <div class="action">Ver Estrategia &#10140;</div>
+                  </a>
+
+                  <a href="{URL_TESIS}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_TESIS}" alt="Guía Sobreviviendo a la Tesis" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Guía Sobreviviendo a la Tesis</div>
+                      <div class="desc">Metodología práctica para proyectos universitarios.</div>
+                    </div>
+                    <div class="action">Ver Guía &#10140;</div>
+                  </a>
+
+                  <a href="{URL_MARCA}" class="ds-card-box">
+                    <div>
+                      <img src="{REAL_IMG_MARCA}" alt="Evaluar Desarrollo de Marca" class="ds-card-thumb" loading="lazy" />
+                      <div class="title">Evaluar Desarrollo de Marca</div>
+                      <div class="desc">Auditoría estratégica de marca y mercado.</div>
+                    </div>
+                    <div class="action">Ver Evaluación &#10140;</div>
+                  </a>
+                </div>
+              </section>
+
+            </b:if>
+"""
+
+# Build clean v19 XML
+xml_content = xml_base
+
+head_pos = xml_content.find("</head>")
+if head_pos != -1:
+    xml_content = xml_content[:head_pos] + seo_block + css_block + xml_content[head_pos:]
+
+main_target = "<main class='centered-bottom' id='main' role='main' tabindex='-1'>"
+main_pos = xml_content.find(main_target)
+if main_pos != -1:
+    insert_at = main_pos + len(main_target)
+    xml_content = xml_content[:insert_at] + "\n" + frontpage_html_block + xml_content[insert_at:]
+
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(xml_content)
+
+try:
+    ET.parse(output_path)
+    print("SUCCESS: v19_theme_optimizado.xml created and passed XML test!")
+    file_size_kb = os.path.getsize(output_path) / 1024
+    print(f"File Size: {file_size_kb:.2f} KB (Safe for Blogger Upload!)")
+except Exception as e:
+    print("XML ERROR:", e)

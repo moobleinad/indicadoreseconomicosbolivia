@@ -1,0 +1,219 @@
+{
+  "titulo": "Indicadores Económicos de Bolivia",
+  "descripcion": "Dataset verificado de indicadores macroeconómicos de Bolivia",
+  "ultima_actualizacion": "02/08/2026",
+  "indicadores": [
+    {
+      "id": "tc_paralelo",
+      "nombre": "Dólar Paralelo / Mercado Libre",
+      "valor": "11.75 Bs",
+      "unidad": "Bs / USD (Promedio)",
+      "semaforo": "verde",
+      "semaforo_label": "🟢 ESTABILIZADO",
+      "fuente": "Consolidado Mercado P2P (Binance, AirTM, Casas de Cambio)",
+      "periodo": "02 de Agosto de 2026",
+      "fecha_actualizacion": "02/08/2026",
+      "que_es": "El dólar en mercado libre refleja la cotización real de la divisa estadounidense en operaciones no reguladas y plataformas P2P. A diferencia del tipo fijado por decreto, este valor se determina por la oferta y demanda directa de agentes económicos. Es el termómetro más fiel del costo real de reposición de insumos importados.",
+      "evaluacion_corta": "Se evalúa en Verde porque la cotización de 11,75 Bs muestra convergencia y alineación con el tipo de cambio oficial flexible, estabilizando el costo de reposición no regulado.",
+      "analisis": "La convergencia observada responde al mayor flujo de dólares provenientes del superávit comercial y a la flexibilidad cambiaria oficial. La reducción de la brecha respecto al dólar bancario disminuye la distorsión de precios en el comercio mayorista.\n\nPara empresas e importadores, esta estabilidad relativa reduce el riesgo de cotizaciones especulativas de corto plazo y facilita la planificación de inventarios.",
+      "pregunta_estrategica": "¿Con la convergencia del dólar libre a 11.75 Bs, tu empresa ya recalculó el precio real de reposición de inventarios o sigues reteniendo ventas por incertidumbre?",
+      "detalles_historicos": [
+        {"periodo": "02/08/2026", "valor": "11.75 Bs", "fuente": "Mercado P2P (Rango 11.65-11.80)"},
+        {"periodo": "31/07/2026", "valor": "11.90 Bs", "fuente": "Mercado P2P"},
+        {"periodo": "Julio 2026", "valor": "12.10 Bs", "fuente": "Mercado P2P"},
+        {"periodo": "Pico 2025", "valor": "13.50+ Bs", "fuente": "Mercado Informal"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Brecha respecto al oficial < 5% o convalidado en mercado libre",
+        "amarillo": "Brecha entre 5% y 15% (Presión moderada)",
+        "rojo": "Brecha > 15% (Distorsión cambiaria severa)"
+      },
+      "nota": "Promedio ponderado de transacciones P2P. Muestra alineación y convergencia con el tipo de cambio oficial flexible."
+    },
+    {
+      "id": "tc_oficial",
+      "nombre": "Dólar Oficial (BCB)",
+      "valor": "12.13 Bs",
+      "unidad": "Bs / USD",
+      "semaforo": "rojo",
+      "semaforo_label": "🔴 CRÍTICO / AJUSTE",
+      "fuente": "Banco Central de Bolivia (BCB)",
+      "periodo": "02 de Agosto de 2026",
+      "fecha_actualizacion": "02/08/2026",
+      "que_es": "Es la cotización fijada diariamente por el Banco Central de Bolivia para operaciones bancarias y comercio exterior formal. Representa la tasa institucional a la que el sistema financiero liquida obligaciones con el exterior y calcula la conversión de pasivos en moneda extranjera.",
+      "evaluacion_corta": "Se evalúa en Rojo debido a que la cotización oficial se ajustó de 6,96 Bs a 12,13 Bs bajo el régimen flexible, representando una variación porcentual superior al 10% anual respecto al ancla previa.",
+      "analisis": "La transición del régimen fijo a un esquema flexible busca sincerar la paridad monetaria con la realidad del mercado. Este ajuste ha permitido reordenar la liquidación de divisas en la banca comercial, reduciendo el descalce entre la cotización bancaria y el mercado libre.\n\nEl desafío central radica en anclar las expectativas de costos para evitar un traslado excesivo a precios finales y garantizar la certidumbre de contratos a mediano plazo.",
+      "pregunta_estrategica": "Frente al ajuste oficial del régimen flexible a 12.13 Bs, ¿tus contratos y pasivos bancarios en moneda extranjera tienen cláusulas de protección cambiaria?",
+      "detalles_historicos": [
+        {"periodo": "02/08/2026", "valor": "12.13 Bs", "fuente": "BCB (Dólar Flexible)"},
+        {"periodo": "31/07/2026", "valor": "12.15 Bs", "fuente": "BCB"},
+        {"periodo": "Junio 2026", "valor": "11.80 Bs", "fuente": "BCB"},
+        {"periodo": "Régimen Fijo 2025", "valor": "6.96 Bs", "fuente": "BCB (Régimen anterior)"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Variación anual < 3% (Estabilidad cambiaria)",
+        "amarillo": "Variación anual entre 3% y 10% (Ajuste moderado)",
+        "rojo": "Variación anual > 10% (Devaluación / Ajuste cambiario estructural)"
+      },
+      "nota": "Cotización oficial diaria bajo el régimen de tipo de cambio flexible del BCB. El ajuste acumulado superó el 10% anual respecto al ancla previa."
+    },
+    {
+      "id": "inflacion",
+      "nombre": "Inflación (IPC)",
+      "valor": "4.82%",
+      "unidad": "Acumulada 1er Semestre (Interanual: 9.23%)",
+      "semaforo": "rojo",
+      "semaforo_label": "🔴 CRÍTICO / ALTA PRESIÓN",
+      "fuente": "Instituto Nacional de Estadística (INE)",
+      "periodo": "A Junio 2026 (1er Semestre)",
+      "fecha_actualizacion": "05/07/2026",
+      "que_es": "El Índice de Precios al Consumidor (IPC) mide la variación porcentual periódica del costo de una canasta representativa de bienes y servicios. Es el indicador directo del nivel de erosión sobre el poder adquisitivo de la moneda nacional.",
+      "evaluacion_corta": "Se clasifica en Rojo porque la inflación acumulada del 4,82% en el primer semestre sitúa la variación interanual a doce meses en 9,23%, superando el margen de tolerancia macroeconómica.",
+      "analisis": "El ritmo interanual del 9,23% refleja el encarecimiento de bienes importados e insumos agrícolas debido al periodo de ajuste cambiario.\n\nPara las unidades productivas, este escenario exige optimizar la estructura de costos fijos y recalcular márgenes operacionales para proteger la sostenibilidad del flujo de caja.",
+      "pregunta_estrategica": "Con una inflación interanual de 9.23%, ¿cuántos puntos porcentuales ha absorbido la inflación de tu margen de ganancia real este año?",
+      "detalles_historicos": [
+        {"periodo": "Acumulada 1S 2026", "valor": "4.82%", "fuente": "INE"},
+        {"periodo": "Junio 2026 (Mensual)", "valor": "2.15%", "fuente": "INE"},
+        {"periodo": "Interanual a Junio 2026", "valor": "9.23%", "fuente": "INE"},
+        {"periodo": "Gestión 2025 Total", "valor": "7.40%", "fuente": "INE"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "IPC anual < 4.0% (Estabilidad de precios / Meta BCB)",
+        "amarillo": "IPC anual entre 4.0% y 7.0% (Presión inflacionaria moderada)",
+        "rojo": "IPC interanual > 7.0% (Riesgo de erosión del poder adquisitivo)"
+      },
+      "nota": "Índice de Precios al Consumidor (INE). La inflación interanual de 9.23% ubica al indicador en nivel de alerta roja."
+    },
+    {
+      "id": "reservas",
+      "nombre": "Reservas Internacionales (RIN)",
+      "valor": "$3.617,3 MM",
+      "unidad": "Millones de USD",
+      "semaforo": "amarillo",
+      "semaforo_label": "🟡 PRECAUCIÓN / MONITOREO",
+      "fuente": "Banco Central de Bolivia (BCB)",
+      "periodo": "Al 30 de Junio de 2026",
+      "fecha_actualizacion": "15/07/2026",
+      "que_es": "Las RIN representan los activos financieros en divisas y oro custodiados por el Banco Central para respaldar la moneda nacional y garantizar el pago de deuda externa e importaciones esenciales.",
+      "evaluacion_corta": "Se evalúa en Amarillo porque el saldo total de 3.617,3 MM USD está respaldado por reservas de oro físico ($2.882,9M), aunque la liquidez de divisas operativas ($666,1M) permanece bajo seguimiento constante.",
+      "analisis": "El saldo se sostiene prioritariamente en el valor de las reservas de oro físico, mientras que la liquidez en divisas operativas permanece bajo monitoreo estrecho.\n\nEl fortalecimiento continuo del superávit comercial será el canal principal para reconstituir el componente líquido de las reservas durante el segundo semestre.",
+      "pregunta_estrategica": "Considerando que el 80% de las reservas están sostenidas en oro físico, ¿tienes garantizado el flujo de divisas líquidas para cubrir tus importaciones a 90 días?",
+      "detalles_historicos": [
+        {"periodo": "Junio 2026", "valor": "$3.617,3 MM", "fuente": "BCB (Oro: $2.882.9M | Divisas: $666.1M)"},
+        {"periodo": "Diciembre 2025", "valor": "$3.713,2 MM", "fuente": "BCB"},
+        {"periodo": "Diciembre 2024", "valor": "$1.708,0 MM", "fuente": "BCB"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Divisas de libre disponibilidad cubren > 3 meses de importaciones",
+        "amarillo": "RIN sostenidas por oro físico ($2.882M), pero divisas en zona de amortiguación ($666M)",
+        "rojo": "Divisas líquidas en mínimos críticos (< 1 mes de importaciones)"
+      },
+      "nota": "Total de RIN reportado por el BCB ($2.882,9M en 22.3 toneladas de oro y $666,1M en divisas y DEG)."
+    },
+    {
+      "id": "balanza",
+      "nombre": "Balanza Comercial",
+      "valor": "+$1.669 MM",
+      "unidad": "Millones de USD (1S 2026)",
+      "semaforo": "verde",
+      "semaforo_label": "🟢 SUPERÁVIT COMERCIAL",
+      "fuente": "Instituto Nacional de Estadística (INE)",
+      "periodo": "1er Semestre 2026 (Enero - Junio)",
+      "fecha_actualizacion": "28/07/2026",
+      "que_es": "Es la diferencia contable entre el valor monetario total de las exportaciones e importaciones de un país. Un saldo positivo indica que la economía genera más divisas por ventas al exterior de las que gasta en compras externas.",
+      "evaluacion_corta": "Se evalúa en Verde al acumular un superávit de 1.669 MM USD en el primer semestre de 2026, aportando un saldo neto positivo en el flujo de divisas del país.",
+      "analisis": "El superávit acumulado de 1.669 MM USD al primer semestre constituye el pilar de estabilización del mercado monetario.\n\nLa recuperación de exportaciones agroindustriales e industriales compensó la caída en hidrocarburos, generando una oferta neta de dólares que alivia la liquidez del sistema.",
+      "pregunta_estrategica": "El superávit de 1.669 MM USD genera oferta neta de dólares en exportación no tradicional. ¿Está tu empresa preparada para captar divisas en mercados externos?",
+      "detalles_historicos": [
+        {"periodo": "1S 2026 Acumulado", "valor": "+$1.669,0 MM", "fuente": "INE (Exp: $6.407,5M | Imp: $4.738,5M)"},
+        {"periodo": "Junio 2026 (Mensual)", "valor": "+$184,7 MM", "fuente": "INE"},
+        {"periodo": "Gestión 2025 Total", "valor": "-$120,0 MM", "fuente": "INE"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Superávit comercial positivo (Exportaciones mayores a Importaciones)",
+        "amarillo": "Déficit comercial moderado (< 2% del PIB)",
+        "rojo": "Déficit comercial profundo y sostenido (> 2% del PIB)"
+      },
+      "nota": "Saldo entre exportaciones totales e importaciones registrado por el INE. El superávit de $1.669M genera flujo neto positivo de divisas."
+    },
+    {
+      "id": "embi",
+      "nombre": "Riesgo País (EMBI Bolivia)",
+      "valor": "430 pbs",
+      "unidad": "Puntos Básicos (JP Morgan)",
+      "semaforo": "amarillo",
+      "semaforo_label": "🟡 RIESGO MODERADO",
+      "fuente": "JP Morgan / Reporte Financiero Internacional",
+      "periodo": "Agosto 2026",
+      "fecha_actualizacion": "01/08/2026",
+      "que_es": "El índice EMBI elaborado por JP Morgan mide la sobretasa o diferencial de rendimiento que deben pagar los bonos soberanos de Bolivia frente a los títulos del Tesoro de Estados Unidos. Expresa la percepción internacional sobre la solvencia del Estado.",
+      "evaluacion_corta": "Se clasifica en Amarillo con 430 puntos básicos tras una contracción importante desde los 605 pbs de mayo, reflejando una moderación del riesgo en los mercados internacionales.",
+      "analisis": "La contracción del riesgo país a 430 puntos básicos en agosto refleja una recepción favorable por parte de los mercados internacionales ante el sinceramiento del esquema cambiario.\n\nUn EMBI a la baja reduce progresivamente el costo de financiamiento externo para la banca y grandes empresas.",
+      "pregunta_estrategica": "Con la contracción del riesgo país a 430 pbs, ¿has evaluado renegociar las tasas de interés y plazos de tus líneas de crédito empresariales?",
+      "detalles_historicos": [
+        {"periodo": "Agosto 2026", "valor": "430 pbs", "fuente": "JP Morgan"},
+        {"periodo": "Mayo 2026 (Pico)", "valor": "605 pbs", "fuente": "JP Morgan"},
+        {"periodo": "Enero 2026", "valor": "350 pbs", "fuente": "JP Morgan"},
+        {"periodo": "Gestión 2025", "valor": "1.500+ pbs", "fuente": "JP Morgan"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "EMBI < 400 pbs (Riesgo bajo / Acceso favorable a crédito internacional)",
+        "amarillo": "EMBI entre 400 pbs y 800 pbs (Riesgo moderado / Costo crediticio intermedio)",
+        "rojo": "EMBI > 800 pbs (Riesgo elevado / Cierre de mercados voluntarios de deuda)"
+      },
+      "nota": "Diferencial de rendimiento de la deuda soberana de Bolivia frente a los bonos del Tesoro estadounidense."
+    },
+    {
+      "id": "oro_intl",
+      "nombre": "Cotización del Oro (Exportación)",
+      "valor": "$2.450 USD",
+      "unidad": "USD / Onza Troy",
+      "semaforo": "verde",
+      "semaforo_label": "🟢 PRECIO HISTÓRICO ALTO",
+      "fuente": "LBMA (London Bullion Market Association)",
+      "periodo": "Agosto 2026",
+      "fecha_actualizacion": "01/08/2026",
+      "que_es": "Es el precio internacional de la onza troy de oro en mercados globales (LBMA). Determina directamente el valor de las reservas físicas del BCB y los ingresos por regalías mineras de las regiones exportadoras.",
+      "evaluacion_corta": "Se evalúa en Verde debido a cotizaciones históricas superiores a $2.450 USD/oz, favoreciendo directamente la valoración de las RIN y los ingresos mineros del país.",
+      "analisis": "Los niveles históricos superiores a $2.450 USD/oz actúan como un amortiguador de valor para el balance del Banco Central.\n\nEl alto precio internacional valoriza de forma automática el activo de reserva nacional y maximiza los ingresos por exportaciones mineras.",
+      "pregunta_estrategica": "Los precios récord del oro fortalecen los ingresos regionales. ¿Cómo aprovecha tu modelo de negocio el incremento de liquidez en sectores vinculados?",
+      "detalles_historicos": [
+        {"periodo": "Agosto 2026", "valor": "$2.450 USD/oz", "fuente": "LBMA"},
+        {"periodo": "Junio 2026", "valor": "$2.380 USD/oz", "fuente": "LBMA"},
+        {"periodo": "Gestión 2025", "valor": "$2.050 USD/oz", "fuente": "LBMA"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Precio > $2.200/oz (Impacto muy favorable en reservas y regalías mineras)",
+        "amarillo": "Precio entre $1.800 y $2.200/oz (Rango neutro)",
+        "rojo": "Precio < $1.800/oz (Menor valor de activos de reserva y regalías)"
+      },
+      "nota": "Precio spot internacional del oro. Los niveles altos favorecen directamente la valoración de las RIN y las exportaciones mineras de Bolivia."
+    },
+    {
+      "id": "pib",
+      "nombre": "Crecimiento del PIB",
+      "valor": "2.10%",
+      "unidad": "Variación Porcentual Anual",
+      "semaforo": "amarillo",
+      "semaforo_label": "🟡 CRECIMIENTO MODERADO",
+      "fuente": "Instituto Nacional de Estadística (INE)",
+      "periodo": "Gestión 2025 / 2026",
+      "fecha_actualizacion": "25/06/2026",
+      "que_es": "El Producto Interno Bruto evalúa la suma total del valor monetario de la producción de bienes y servicios finales generados dentro del país durante un periodo determinado.",
+      "evaluacion_corta": "Se califica en Amarillo con un crecimiento del 2,10%, lo que evidencia una expansión moderada durante la fase de ajuste macroeconómico.",
+      "analisis": "La tasa de expansión del 2,10% evidencia una fase de crecimiento moderado en medio de la reestructuración macroeconómica.\n\nLa dinámica económica depende de la capacidad del sector privado para absorber los nuevos costos de producción y dinamizar sectores estratégicos como la manufactura y los servicios.",
+      "pregunta_estrategica": "En un escenario de crecimiento moderado al 2.10%, ¿tu plan operativo prioriza ganar cuota de mercado a competidores o blindar la eficiencia de costos fijos?",
+      "detalles_historicos": [
+        {"periodo": "Proyección 2026", "valor": "2.10%", "fuente": "INE / Banco Mundial"},
+        {"periodo": "Gestión 2025", "valor": "2.30%", "fuente": "INE"},
+        {"periodo": "Gestión 2024", "valor": "3.10%", "fuente": "INE"}
+      ],
+      "criterio_evaluacion": {
+        "verde": "Crecimiento PIB > 3.5% anual (Desarrollo robusto para economías emergentes)",
+        "amarillo": "Crecimiento PIB entre 1.5% y 3.5% anual (Crecimiento moderado / lento)",
+        "rojo": "Crecimiento PIB < 1.5% anual o variación negativa (Estancamiento / Recesión)"
+      },
+      "nota": "Variación interanual del Producto Interno Bruto a precios constantes reportado por el INE."
+    }
+  ]
+}

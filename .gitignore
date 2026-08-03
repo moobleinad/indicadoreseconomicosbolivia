@@ -1,0 +1,9 @@
+# Sensible token and client secrets
+04_API_BLOGGER_Y_AUTENTICACION/
+
+# Cache & Temporary
+__pycache__/
+*.pyc
+.env
+.DS_Store
+06_ARCHIVOS_TEMPORALES_Y_CACHE/

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Simons | De ideas complejas a resultados concretos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000000;
+      color: #e0e0e0;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* CONTAINER */
+    .ds-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER */
+    header {
+      background: #080808;
+      border-bottom: 1px solid rgba(188, 167, 114, 0.2);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-logo .name {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .brand-logo .name span {
+      color: #bca772;
+    }
+
+    .brand-logo .slogan {
+      font-size: 10px;
+      color: #888888;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 12px;
+      font-weight: 700;
+      color: #cccccc;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #bca772;
+    }
+
+    .btn-contact {
+      border: 1px solid #bca772;
+      padding: 8px 18px;
+      border-radius: 4px;
+      color: #bca772 !important;
+      transition: all 0.3s;
+    }
+
+    .btn-contact:hover {
+      background: #bca772;
+      color: #000000 !important;
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      text-align: center;
+      margin: 45px 0 25px 0;
+    }
+
+    .section-title h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-title span {
+      color: #bca772;
+    }
+
+    /* TOP 2 CARDS: FORJA & DESTILADO */
+    .hero-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .hero-card {
+      background: #0d0d0d;
+      border: 1px solid rgba(188, 167, 114, 0.3);
+      border-radius: 12px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-4px);
+      border-color: #bca772;
+    }
+
+    .hero-card-header h3 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #bca772;
+      margin-bottom: 6px;
+    }
+
+    .hero-card-header p {
+      font-size: 13px;
+      color: #aaaaaa;
+      margin-bottom: 20px;
+    }
+
+    .hero-card-list {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    .hero-card-list li {
+      font-size: 13px;
+      color: #dddddd;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, #bca772 0%, #997a15 100%);
+      color: #000000;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      align-self: flex-start;
+    }
+
+    .btn-blue {
+      display: inline-block;
+      background: linear-gradient(135deg, #1b365d 0%, #102442 100%);
+      border: 1px solid #4a7bb0;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      align-self: flex-start;
+    }
+
+    /* CAROUSEL IDEAS QUE EXPLORO Y CONSTRUYO */
+    .carousel-section {
+      margin: 50px 0;
+      position: relative;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: #bca772 #111;
+    }
+
+    .carousel-pill-card {
+      min-width: 210px;
+      background: #0a0a0a;
+      border: 1px solid #222222;
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    .carousel-pill-card:hover {
+      border-color: #bca772;
+      background: #111111;
+    }
+
+    .pill-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #bca772;
+      color: #000;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pill-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .pill-desc {
+      font-size: 11px;
+      color: #888888;
+    }
+
+    /* PUBLICACIONES DESTACADAS (CARRUSEL ARTÍCULOS) */
+    .posts-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .posts-header h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .link-ver-todas {
+      font-size: 12px;
+      font-weight: 700;
+      color: #bca772;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .link-ver-todas:hover {
+      color: #ffffff;
+    }
+
+    .posts-carousel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .post-card-item {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+    }
+
+    .post-card-item:hover {
+      border-color: #bca772;
+      transform: translateY(-3px);
+    }
+
+    .post-thumb {
+      height: 140px;
+      background: #151515;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 30px;
+    }
+
+    .post-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .post-title-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.4;
+    }
+
+    .post-snippet-text {
+      font-size: 12px;
+      color: #888888;
+    }
+
+    .post-read-more {
+      font-size: 11px;
+      font-weight: 700;
+      color: #bca772;
+      margin-top: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      border-top: 1px solid rgba(188, 167, 114, 0.2);
+      padding: 40px 0 20px 0;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #bca772;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .footer-col p, .footer-col li {
+      font-size: 12px;
+      color: #888888;
+      margin-bottom: 6px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 11px;
+      color: #555555;
+      border-top: 1px solid #111;
+      padding-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="ds-container header-inner">
+      <div class="brand-logo">
+        <div class="name">DANIEL SIMONS <span>D.S.</span></div>
+        <div class="slogan">IDEAS • ESTRUCTURA • IMPACTO</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#">Servicios</a></li>
+          <li><a href="#">Proyectos</a></li>
+          <li><a href="#">Publicaciones</a></li>
+          <li><a href="#">Laboratorio</a></li>
+          <li><a href="#" class="btn-contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="ds-container">
+
+    <!-- ¿CÓMO PUEDO AYUDARTE? -->
+    <div class="section-title">
+      <h2>¿CÓMO PUEDO <span>AYUDARTE?</span></h2>
+    </div>
+
+    <div class="hero-cards-grid">
+      <!-- FORJA -->
+      <div class="hero-card">
+        <div>
+          <div class="hero-card-header">
+            <h3>FORJA</h3>
+            <p>Convertimos <strong>ideas</strong> en proyectos, negocios y estrategias concretas.</p>
+          </div>
+          <ul class="hero-card-list">
+            <li>🚀 Emprendimiento</li>
+            <li>💡 Innovación</li>
+            <li>📊 Modelos de negocio</li>
+            <li>🛡️ Validación y estrategia</li>
+            <li>👥 Acompañamiento</li>
+          </ul>
+        </div>
+        <a href="https://www.danielsimons.xyz/p/forja-disciplina-habitos-y-lucidez.html" class="btn-gold">TRABAJEMOS JUNTOS &gt;</a>
+      </div>
+
+      <!-- DESTILADO -->
+      <div class="hero-card">
+        <div>
+          <div class="hero-card-header">
+            <h3>DESTILADO</h3>
+            <p>Convertimos <strong>complejidad</strong> en claridad absoluta.</p>
+          </div>
+          <ul class="hero-card-list">
+            <li>🔍 Investigación y análisis</li>
+            <li>✍️ Redacción y síntesis</li>
+            <li>📚 Libros y guías</li>
+            <li>📄 Documentos técnicos</li>
+            <li>⭐ Contenido de alto valor</li>
+          </ul>
+        </div>
+        <a href="https://www.danielsimons.xyz/p/destilado-de-ideas-de-negocio_0599447061.html" class="btn-blue">SOLICITAR PROYECTO &gt;</a>
+      </div>
+    </div>
+
+    <!-- IDEAS QUE EXPLORO Y CONSTRUYO (CARRUSEL DE NÚCLEOS) -->
+    <div class="carousel-section">
+      <div class="section-title">
+        <h2>IDEAS QUE <span>EXPLORO Y CONSTRUYO</span></h2>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-pill-card">
+          <div class="pill-number">1</div>
+          <div class="pill-title">FORJA</div>
+          <div class="pill-desc">De la idea a la ejecución estructurada.</div>
+        </div>
+        <div class="carousel-pill-card">
+          <div class="pill-number">2</div>
+          <div class="pill-title">DESTILADO</div>
+          <div class="pill-desc">Del conocimiento disperso a la claridad.</div>
+        </div>
+        <div class="carousel-pill-card">
+          <div class="pill-number">3</div>
+          <div class="pill-title">MFEIR / MEDS</div>
+          <div class="pill-desc">Individualidades Relacionales y Estabilidad.</div>
+        </div>
+        <div class="carousel-pill-card">
+          <div class="pill-number">4</div>
+          <div class="pill-title">FILOSOFÍA DEL JUEGO</div>
+          <div class="pill-desc">Investigación filosófica aplicada.</div>
+        </div>
+        <div class="carousel-pill-card">
+          <div class="pill-number">5</div>
+          <div class="pill-title">LABORATORIO</div>
+          <div class="pill-desc">Colabora, participa y construye conjuntamente.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PUBLICACIONES DESTACADAS (CARRUSEL SELECCIONADO + BOTÓN VER TODAS) -->
+    <div style="margin-top: 50px;">
+      <div class="posts-header">
+        <div>
+          <h2>PUBLICACIONES <span>DESTACADAS</span></h2>
+          <p style="font-size: 12px; color: #888;">Artículos seleccionados de economía, energía, IA y estrategia.</p>
+        </div>
+        <!-- BOTÓN VER TODAS QUE LLEVA A LA PÁGINA DE TODOS LOS ARTÍCULOS -->
+        <a href="https://www.danielsimons.xyz/search" class="link-ver-todas">
+          VER TODAS LAS PUBLICACIONES &rarr;
+        </a>
+      </div>
+
+      <div class="posts-carousel-grid">
+        <div class="post-card-item">
+          <div class="post-thumb">📈</div>
+          <div class="post-info">
+            <div class="post-title-text">La ilusión del dólar y el colapso del modelo centralista</div>
+            <div class="post-snippet-text">Análisis causas estructurales de la escasez de divisas en Bolivia.</div>
+            <a href="#" class="post-read-more">Leer más &rarr;</a>
+          </div>
+        </div>
+
+        <div class="post-card-item">
+          <div class="post-thumb">⚡</div>
+          <div class="post-info">
+            <div class="post-title-text">Crisis energética y subsidios en Bolivia</div>
+            <div class="post-snippet-text">Impacto fiscal, distorsión de precios y alternativas de salida.</div>
+            <a href="#" class="post-read-more">Leer más &rarr;</a>
+          </div>
+        </div>
+
+        <div class="post-card-item">
+          <div class="post-thumb">🧠</div>
+          <div class="post-info">
+            <div class="post-title-text">Más allá del Liberalismo y Socialismo</div>
+            <div class="post-snippet-text">El Individualismo Relacional (MFEIR) aplicado a la realidad social.</div>
+            <a href="#" class="post-read-more">Leer más &rarr;</a>
+          </div>
+        </div>
+
+        <div class="post-card-item">
+          <div class="post-thumb">🤖</div>
+          <div class="post-info">
+            <div class="post-title-text">IA y Humanidad: Estructura del Conocimiento</div>
+            <div class="post-snippet-text">Reflexiones sobre inteligencia artificial aplicada y aprendizaje.</div>
+            <a href="#" class="post-read-more">Leer más &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ds-container footer-grid">
+      <div class="footer-col">
+        <h4>SOBRE DANIEL SIMONS</h4>
+        <p>Economista, docente, estructurador de ideas y proyectos. Construyo claridad mediante investigación, estructura y desarrollo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>ENLACES RÁPIDOS</h4>
+        <ul style="list-style: none;">
+          <li><a href="#">Forja de Proyectos</a></li>
+          <li><a href="#">Destilado de Ideas</a></li>
+          <li><a href="#">Modelo MFEIR</a></li>
+          <li><a href="#">Observatorio Económico</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACTO</h4>
+        <p>📍 Santa Cruz de la Sierra, Bolivia</p>
+        <p>🌐 danielsimons.xyz</p>
+        <p>📲 WhatsApp Directo disponible 24/7</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Daniel Simons. Todos los derechos reservados. «De ideas complejas a resultados concretos.»
+    </div>
+  </footer>
+
+</body>
+</html>
