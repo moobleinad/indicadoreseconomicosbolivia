@@ -46,11 +46,12 @@ def send_onesignal_push(title, message, target_segment="indicadores"):
 
 def generate_daily_whatsapp_summary(dataset):
     """Genera el texto ejecutivo formateado para el Canal de WhatsApp"""
-    hoy = datetime.datetime.now().strftime("%d/%m/%Y")
+    now = datetime.datetime.now()
+    fecha_hora_str = now.strftime("%d/%m/%Y - %I:%M %p")
     texto = (
         f"🇧🇴 INDICADORES ECONÓMICOS DE BOLIVIA\n"
-        f"📅 Resumen Ejecutivo • {hoy}\n"
-        f"Compilado por Daniel Simons | www.danielsimons.xyz\n\n"
+        f"📅 Actualizado al: {fecha_hora_str}\n"
+        f"www.danielsimons.xyz\n\n"
         f"🟢 Dólar Libre (P2P): 11.75 Bs (Estabilizado)\n"
         f"🔴 Dólar Oficial (BCB): 12.13 Bs (Ajuste Flexible)\n"
         f"🔴 Inflación IPC: 4.82% 1S (Interanual: 9.23%)\n"
@@ -59,11 +60,10 @@ def generate_daily_whatsapp_summary(dataset):
         f"🟡 Riesgo País (EMBI): 430 pbs (Moderado)\n"
         f"🟢 Oro Exportación: $2.450 USD/oz (Histórico Alto)\n"
         f"🟡 Crecimiento PIB: 2.10% (Moderado)\n\n"
-        f"💡 Reflexión Coyuntural del Día:\n"
+        f"💡 Reflexión Coyuntural:\n"
         f"\"Con la convergencia del dólar libre a 11.75 Bs, ¿tu empresa ya recalculó el precio real de reposición de inventarios?\"\n\n"
-        f"📊 Revisa el tablero interactivo en vivo:\n"
-        f"👉 https://www.danielsimons.xyz/p/indicadores-economicos-de-bolivia_0349188327.html\n\n"
-        f"📲 Comparte esta actualización con otros ejecutivos."
+        f"📊 Ver tablero interactivo en vivo:\n"
+        f"👉 https://www.danielsimons.xyz/p/indicadores-economicos-de-bolivia_0349188327.html"
     )
     return texto
 
