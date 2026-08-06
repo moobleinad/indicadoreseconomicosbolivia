@@ -67,11 +67,7 @@ def generate_daily_whatsapp_summary(dataset):
     )
     return texto
 
-def send_whatsapp_message(message_text):
-    """Muestra o envía el mensaje de WhatsApp preparado"""
-    print("\n=== RESUMEN PARA CANAL DE WHATSAPP PREPARADO ===")
-    print(message_text)
-    print("================================================\n")
+
 
 def fetch_live_gold_price():
     """Obtiene cotización spot aproximada del oro vía API pública de metales"""
