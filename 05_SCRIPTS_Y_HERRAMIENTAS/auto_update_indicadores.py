@@ -46,7 +46,8 @@ def send_onesignal_push(title, message, target_segment="indicadores"):
 
 def generate_daily_whatsapp_summary(dataset):
     """Genera el texto ejecutivo formateado para el Canal de WhatsApp"""
-    now = datetime.datetime.now()
+    # Ajuste de zona horaria para Bolivia (UTC-4)
+    now = datetime.datetime.utcnow() - datetime.timedelta(hours=4)
     fecha_hora_str = now.strftime("%d/%m/%Y - %I:%M %p")
     texto = (
         f"🇧🇴 INDICADORES ECONÓMICOS DE BOLIVIA\n"
@@ -83,8 +84,10 @@ def fetch_live_gold_price():
     return 2450.00
 
 def run_daily_update():
-    now_str = datetime.datetime.now().strftime("%d de %B de %Y")
-    now_date_short = datetime.datetime.now().strftime("%d/%m/%Y")
+    # Ajuste de zona horaria para Bolivia (UTC-4)
+    now_bolivia = datetime.datetime.utcnow() - datetime.timedelta(hours=4)
+    now_str = now_bolivia.strftime("%d de %B de %Y")
+    now_date_short = now_bolivia.strftime("%d/%m/%Y")
     
     print(f"=== INICIANDO VERIFICACIÓN Y ACTUALIZACIÓN DIARIA: {now_str} ===")
     
